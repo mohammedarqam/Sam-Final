@@ -1,0 +1,7 @@
+{
+  "name": "posters",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular"
+}
