@@ -14,6 +14,7 @@ import { ExplorePage } from '../pages/MainTabs/explore/explore';
 import { NavigatePage } from '../pages/MainTabs/navigate/navigate';
 import { NotificationsPage } from '../pages/MainTabs/notifications/notifications';
 import { ProfilePage } from '../pages/MainTabs/profile/profile';
+import { LoginPage } from '../pages/Auths/login/login';
 export const firebaseCred = {
   apiKey: "AIzaSyBirqKnWOtxUKau3VYbS2AZN_1UnIubHoY",
   authDomain: "arqamtechweb.firebaseapp.com",
@@ -34,6 +35,7 @@ firebase.initializeApp(firebaseCred);
     NavigatePage,
     NotificationsPage,
     ProfilePage,
+    LoginPage,
   ],
   imports: [
     BrowserModule,
@@ -51,6 +53,7 @@ firebase.initializeApp(firebaseCred);
     NavigatePage,
     NotificationsPage,
     ProfilePage,
+    LoginPage,
   ],
   providers: [
     StatusBar,

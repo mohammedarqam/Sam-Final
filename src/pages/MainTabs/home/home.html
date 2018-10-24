@@ -6,6 +6,10 @@
 
 <ion-content padding>
 
-
+  <ion-slides>
+    <ion-slide *ngFor="let b of banners" >
+      <img [src]="b.Image" class="banners" />
+    </ion-slide>
+  </ion-slides>
   
 </ion-content>
