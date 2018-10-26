@@ -26,7 +26,7 @@ export class HomePage {
       snap.forEach(snp=>{
         let temp : any = snp.payload.val();
         temp.key = snp.key;
-        console.log(temp)
+        this.banners.push(temp)
       })
     })
   }

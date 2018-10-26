@@ -1,3 +1,20 @@
 page-login {
+    ion-header {
+        .toolbar {
+          position: absolute;
+      
+          .toolbar-background {
+            background: transparent;
+          }
+        }
+      }
 
+  .logo{
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    width: 50%;
+    -webkit-transform: translate(-50%, 0);
+    transform: translate(-50%, 0);
+  }
 }

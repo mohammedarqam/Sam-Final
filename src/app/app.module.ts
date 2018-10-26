@@ -15,13 +15,17 @@ import { NavigatePage } from '../pages/MainTabs/navigate/navigate';
 import { NotificationsPage } from '../pages/MainTabs/notifications/notifications';
 import { ProfilePage } from '../pages/MainTabs/profile/profile';
 import { LoginPage } from '../pages/Auths/login/login';
+import { LoginSplashPage } from '../pages/Auths/login-splash/login-splash';
+import { SignUpPage } from '../pages/Auths/sign-up/sign-up';
+
+
 export const firebaseCred = {
-  apiKey: "AIzaSyBirqKnWOtxUKau3VYbS2AZN_1UnIubHoY",
-  authDomain: "arqamtechweb.firebaseapp.com",
-  databaseURL: "https://arqamtechweb.firebaseio.com",
-  projectId: "arqamtechweb",
-  storageBucket: "arqamtechweb.appspot.com",
-  messagingSenderId: "1069269221821"
+  apiKey: "AIzaSyDfYGCZchTJHmNBlk4-T4-B24d7qtBs4LQ",
+  authDomain: "posters-83a2e.firebaseapp.com",
+  databaseURL: "https://posters-83a2e.firebaseio.com",
+  projectId: "posters-83a2e",
+  storageBucket: "posters-83a2e.appspot.com",
+  messagingSenderId: "9709869347"
 };
 firebase.initializeApp(firebaseCred);
 
@@ -36,10 +40,14 @@ firebase.initializeApp(firebaseCred);
     NotificationsPage,
     ProfilePage,
     LoginPage,
+    LoginSplashPage,
+    SignUpPage,
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp),
+    IonicModule.forRoot(MyApp, {
+      scrollAssist: false
+    }),
     AngularFireModule.initializeApp(firebaseCred),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
@@ -54,6 +62,8 @@ firebase.initializeApp(firebaseCred);
     NotificationsPage,
     ProfilePage,
     LoginPage,
+    LoginSplashPage,
+    SignUpPage,
   ],
   providers: [
     StatusBar,
