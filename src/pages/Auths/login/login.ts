@@ -1,7 +1,8 @@
 import { Component,ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams, ToastController, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController, AlertController, Tabs } from 'ionic-angular';
 import { Slides } from 'ionic-angular';
 import firebase from 'firebase';
+import { TabsPage } from '../../Supp/tabs/tabs';
 
 
 @IonicPage()
@@ -13,6 +14,9 @@ export class LoginPage {
   phone : string;
   otp : string;
 
+  confirmR : any;
+
+
   @ViewChild(Slides) slides: Slides;
   public recaptchaVerifier:firebase.auth.RecaptchaVerifier;
 
@@ -23,7 +27,9 @@ export class LoginPage {
   ) {
   }
   ionViewDidEnter(){
-    this.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('recaptcha-container');
+    this.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('recaptcha-container',{
+      'size' : 'invisible'
+    });
   }
   ionViewDidLoad() {
     this.slides.lockSwipes(true);
@@ -32,78 +38,47 @@ export class LoginPage {
 
 
 
-  // signIn(){
-  //   const appVerifier = this.recaptchaVerifier;
-  //   const phoneNumberString = "+91" + phoneNumber;
-  //   firebase.auth().signInWithPhoneNumber(phoneNumberString, appVerifier)
-  //     .then( confirmationResult => {
-
-
-  //       let prompt = this.alertCtrl.create({
-  //       title: 'Enter the Confirmation code',
-  //       inputs: [{ name: 'confirmationCode', placeholder: 'Confirmation Code' }],
-  //       buttons: [
-  //         { text: 'Cancel',
-  //           handler: data => { console.log('Cancel clicked'); }
-  //         },
-  //         { text: 'Send',
-  //           handler: data => {
-  //             confirmationResult.confirm(data.confirmationCode)
-  //             .then(()=>{
-  //               this.navCtrl.setRoot(UploadMPage);
-  //             }).catch(function (error) {
-  //               alert("Wrong Verification Code");
-  //               this.navCtrl.setRoot();
-  //             });
-  //           }
-  //         }
-  //       ]
-  //     }) ;
-  //     prompt.present();
-  //   }).catch(function (error) {
-  //     console.error("SMS not sent", error);
-  //   });
+  signIn(){
+    const appVerifier = this.recaptchaVerifier;
+    const phoneNumberString = "+91" + this.phone;
+    firebase.auth().signInWithPhoneNumber(phoneNumberString, appVerifier)
+      .then( confirmationResult => {
+        this.confirmR  = confirmationResult;
+    }).then(()=>{
+      this.gtSecond();
+    }).catch(function (error) {
+      console.error("SMS not sent", error);
+    });
   
-  // }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  }
 
 
 
   checkPhone(){
     if(this.phone.length==10){
-      this.gtSecond();
+      this.signIn()
     }else{
       this.presentToast("Enter a valid Phone Number");
     }    
   }
 
   checkOtp(){
-
+    this.VerifyOTP();
+    // if(this.otp){
+    //   this.VerifyOTP();
+    // }else{
+    //   this.presentToast("Enter  avlid OTP");
+    // }    
   }
 
+  VerifyOTP(){
+    this.confirmR.confirm(this.otp).then(()=>{
+      this.navCtrl.setRoot(TabsPage);
+    }).catch(function (error) {
+      var msg = error.msg;
+      this.presentToast(msg);
+    });  
 
-
-  login(){
-    
   }
 
   wrngPhone(){

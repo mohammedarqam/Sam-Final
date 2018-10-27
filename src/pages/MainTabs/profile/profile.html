@@ -1,10 +1,53 @@
 <ion-header>
   <ion-navbar color="primary" >
     <ion-title>Profile</ion-title>
+    <ion-buttons end>
+      <button ion-button clear icon-only color="danger" (click)="signOut()" >
+        <ion-icon name="ios-power"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
 
 <ion-content padding>
+<ion-card>
+  <ion-card-content>
+    <ion-grid>
+      <ion-row>
+        <ion-col col-4>
+          <img src="assets/imgs/blank-user.png" />
+        </ion-col>
+        <ion-col col-8 text-center>
+          <ion-row>
+          <h3 ion-text >{{name}}Mohammed Arqam </h3>
+          </ion-row>
+          <ion-row>
+          <p ion-text>9493726705</p>
+          </ion-row>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+  </ion-card-content>
+</ion-card>
+
+<ion-list>
+  <ion-item>
+    Your Orders
+    <ion-icon item-end name="arrow-forward"></ion-icon>
+  </ion-item>
+  <ion-item>
+    Contact Us
+    <ion-icon item-end name="arrow-forward"></ion-icon>
+  </ion-item>
+  <ion-item>
+    FAQ's
+    <ion-icon item-end name="arrow-forward"></ion-icon>
+  </ion-item>
+</ion-list>
+
+
+
 
 </ion-content>

@@ -5,20 +5,42 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { TabsPage } from '../pages/Supp/tabs/tabs';
 import { LoginPage } from '../pages/Auths/login/login';
 import { LoginSplashPage } from '../pages/Auths/login-splash/login-splash';
-
+import * as firebase from 'firebase';
+import { SignUpPage } from '../pages/Auths/sign-up/sign-up';
 
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage:any = LoginPage;
+  rootPage:any = SignUpPage;
 
-  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
-    platform.ready().then(() => {
-      // Okay, so the platform is ready and our plugins are available.
-      // Here you can do any higher level native things you might need.
-      statusBar.styleDefault();
-      splashScreen.hide();
-    });
+  constructor(
+  public platform: Platform, 
+  public statusBar: StatusBar, 
+  public splashScreen: SplashScreen
+  ) {
+    this.initializeApp();
   }
+
+  initializeApp() {
+    this.platform.ready().then(() => {
+      
+      // firebase.auth().onAuthStateChanged((user)=>{
+      //   if(user){
+      //     firebase.database().ref("User Data/Users").child(user.uid).once("value",snap=>{
+      //       if(snap.exists()){
+      //         this.rootPage = TabsPage;
+      //       }else{
+      //         this.rootPage = LoginSplashPage;
+      //       }
+      //     })
+      //   }
+      // })
+
+      this.statusBar.styleDefault();
+      this.splashScreen.hide();
+    });
+  
+  }
+
 }
