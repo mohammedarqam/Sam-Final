@@ -11,7 +11,7 @@
         <img src="assets/imgs/tempLogo.png" class="logo" />
           <ion-item padding-bottom >
             <ion-label floating>Phone Number</ion-label>
-            <ion-input type="number" [(ngModel)]="phone" autofocus></ion-input>
+            <ion-input type="number" [(ngModel)]="phone"></ion-input>
           </ion-item>
           <div id="recaptcha-container"></div>
         <button ion-button round (click)="checkPhone()" id="sign-in-button" >Continue Logging In</button>
@@ -20,20 +20,17 @@
 
     <ion-slide>
         <img src="assets/imgs/tempLogo.png" class="logo" />
-        <ion-item>
+        <ion-item margin-bottom >
           <ion-label floating>OTP</ion-label>
           <ion-input type="number" [(ngModel)]="otp" ></ion-input>
         </ion-item>
 
-        <button ion-button (click)="checkOtp()" >Login</button> <br />
+        <button ion-button (click)="checkOtp()" round >Login</button> <br />
         
-        <button ion-button float-right clear (click)="rOtp()" >
+        <!-- <button ion-button float-right clear (click)="rOtp()" >
           <ion-icon name="refresh" padding-right float-right></ion-icon>
             Resend OTP
-        </button>
-        <!-- <ion-footer>
-          <button ion-button clear (click)="wrngPhone()">Wrong Phone Number ?</button>
-        </ion-footer> -->
+        </button> -->
     </ion-slide>
 
   </ion-slides>

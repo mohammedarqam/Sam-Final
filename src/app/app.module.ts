@@ -17,6 +17,10 @@ import { ProfilePage } from '../pages/MainTabs/profile/profile';
 import { LoginPage } from '../pages/Auths/login/login';
 import { LoginSplashPage } from '../pages/Auths/login-splash/login-splash';
 import { SignUpPage } from '../pages/Auths/sign-up/sign-up';
+import { LoaderPage } from '../pages/Supp/loader/loader';
+import { YourOrdersPage } from '../pages/ProfilePages/your-orders/your-orders';
+import { ContactUsPage } from '../pages/ProfilePages/contact-us/contact-us';
+import { FaqSPage } from '../pages/ProfilePages/faq-s/faq-s';
 
 
 export const firebaseCred = {
@@ -42,6 +46,10 @@ firebase.initializeApp(firebaseCred);
     LoginPage,
     LoginSplashPage,
     SignUpPage,
+    LoaderPage,
+    YourOrdersPage,
+    ContactUsPage,
+    FaqSPage,
   ],
   imports: [
     BrowserModule,
@@ -64,6 +72,10 @@ firebase.initializeApp(firebaseCred);
     LoginPage,
     LoginSplashPage,
     SignUpPage,
+    LoaderPage,
+    YourOrdersPage,
+    ContactUsPage,
+    FaqSPage,
   ],
   providers: [
     StatusBar,

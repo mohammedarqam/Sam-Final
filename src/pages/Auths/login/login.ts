@@ -55,7 +55,8 @@ export class LoginPage {
       this.gtSecond();
       loading.dismiss();
     }).catch(function (error) {
-      console.error("SMS not sent", error);
+      var msg = error.message;
+      this.presentToast(msg);
     });
   
   }
@@ -83,8 +84,7 @@ export class LoginPage {
     this.confirmR.confirm(this.otp).then(()=>{
       this.navCtrl.setRoot(TabsPage);
     }).catch(function (error) {
-      var msg = error.msg;
-      this.presentToast(msg);
+      alert(error.message)
     });  
 
   }

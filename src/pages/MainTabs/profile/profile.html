@@ -2,7 +2,7 @@
   <ion-navbar color="primary" >
     <ion-title>Profile</ion-title>
     <ion-buttons end>
-      <button ion-button clear icon-only color="danger" (click)="signOut()" >
+      <button ion-button clear icon-only color="danger" (click)="signOutConfirm()" >
         <ion-icon name="ios-power"></ion-icon>
       </button>
     </ion-buttons>
@@ -33,15 +33,15 @@
 </ion-card>
 
 <ion-list>
-  <ion-item>
+  <ion-item (click)="gtYourOrders()" >
     Your Orders
     <ion-icon item-end name="arrow-forward"></ion-icon>
   </ion-item>
-  <ion-item>
+  <ion-item (click)="gtContact()" >
     Contact Us
     <ion-icon item-end name="arrow-forward"></ion-icon>
   </ion-item>
-  <ion-item>
+  <ion-item (click)="gtFaqs()" >
     FAQ's
     <ion-icon item-end name="arrow-forward"></ion-icon>
   </ion-item>

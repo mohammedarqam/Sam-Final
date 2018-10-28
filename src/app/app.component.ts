@@ -8,12 +8,13 @@ import { LoginSplashPage } from '../pages/Auths/login-splash/login-splash';
 import * as firebase from 'firebase';
 import { SignUpPage } from '../pages/Auths/sign-up/sign-up';
 import { AngularFireDatabase } from 'angularfire2/database';
+import { LoaderPage } from '../pages/Supp/loader/loader';
 
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage:any = SignUpPage;
+  rootPage:any = LoaderPage;
 
   constructor(
   public platform: Platform, 
@@ -37,7 +38,7 @@ export class MyApp {
             } 
           })
         }else{
-          this.rootPage = LoginPage;
+          this.rootPage = LoginSplashPage;
         }
       })
 
