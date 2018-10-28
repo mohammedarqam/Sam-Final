@@ -16,9 +16,6 @@ export class LoginSplashPage {
   ) {
   }
 
-  gtSignUp(){
-    this.navCtrl.push(SignUpPage);
-  }
   gtLogin(){
     this.navCtrl.push(LoginPage);
   }

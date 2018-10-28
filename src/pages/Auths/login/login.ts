@@ -1,8 +1,9 @@
 import { Component,ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams, ToastController, AlertController, Tabs } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController, AlertController, Tabs, LoadingController } from 'ionic-angular';
 import { Slides } from 'ionic-angular';
 import firebase from 'firebase';
 import { TabsPage } from '../../Supp/tabs/tabs';
+import { LoadedModule } from 'ionic-angular/umd/util/module-loader';
 
 
 @IonicPage()
@@ -23,6 +24,7 @@ export class LoginPage {
   constructor(
   public navCtrl: NavController,
   public toastCtrl : ToastController,
+  public loadingCtrl : LoadingController,
   public alertCtrl : AlertController,
   ) {
   }
@@ -41,11 +43,17 @@ export class LoginPage {
   signIn(){
     const appVerifier = this.recaptchaVerifier;
     const phoneNumberString = "+91" + this.phone;
+    let loading = this.loadingCtrl.create({
+      content: 'Please wait...'
+    });
+  
+    loading.present();
     firebase.auth().signInWithPhoneNumber(phoneNumberString, appVerifier)
       .then( confirmationResult => {
         this.confirmR  = confirmationResult;
     }).then(()=>{
       this.gtSecond();
+      loading.dismiss();
     }).catch(function (error) {
       console.error("SMS not sent", error);
     });
@@ -81,10 +89,13 @@ export class LoginPage {
 
   }
 
-  wrngPhone(){
-    this.gtFirst();
-    this.phone = null;
-  }
+  // checkUser(){
+  //   firebase.database().ref("User Data/Users").child(firebase.auth().currentUser.uid).once("value",snap=>{
+  //     if()
+  //   })
+  // }
+
+
 
 //Support Functions
 

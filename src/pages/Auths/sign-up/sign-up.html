@@ -18,29 +18,9 @@
               <ion-label floating>Email</ion-label>
               <ion-input type="email" [(ngModel)]="email" ></ion-input>
             </ion-item>
-            <ion-item padding-bottom >
-              <ion-label floating>Phone Number</ion-label>
-              <ion-input type="number" [(ngModel)]="phone" ></ion-input>
-            </ion-item>
-            <div id="recaptcha-container"></div>
-          <button ion-button round (click)="checkPhone()" id="sign-in-button" >Continue Sign Up</button>
+          <button ion-button round (click)="checkData()"  >Continue Sign Up</button>
       </ion-slide>
   
-  
-      <ion-slide>
-          <img src="assets/imgs/tempLogo.png" class="logo" />
-          <ion-item>
-            <ion-label floating>OTP</ion-label>
-            <ion-input type="number" [(ngModel)]="otp" ></ion-input>
-          </ion-item>
-  
-          <button ion-button (click)="checkOtp()" >Login</button> <br />
-          
-          <button ion-button float-right clear (click)="rOtp()" >
-            <ion-icon name="refresh" padding-right float-right></ion-icon>
-              Resend OTP
-          </button>
-      </ion-slide>
   
     </ion-slides>
   

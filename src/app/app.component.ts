@@ -7,6 +7,7 @@ import { LoginPage } from '../pages/Auths/login/login';
 import { LoginSplashPage } from '../pages/Auths/login-splash/login-splash';
 import * as firebase from 'firebase';
 import { SignUpPage } from '../pages/Auths/sign-up/sign-up';
+import { AngularFireDatabase } from 'angularfire2/database';
 
 @Component({
   templateUrl: 'app.html'
@@ -17,6 +18,7 @@ export class MyApp {
   constructor(
   public platform: Platform, 
   public statusBar: StatusBar, 
+  public db : AngularFireDatabase,
   public splashScreen: SplashScreen
   ) {
     this.initializeApp();
@@ -25,17 +27,19 @@ export class MyApp {
   initializeApp() {
     this.platform.ready().then(() => {
       
-      // firebase.auth().onAuthStateChanged((user)=>{
-      //   if(user){
-      //     firebase.database().ref("User Data/Users").child(user.uid).once("value",snap=>{
-      //       if(snap.exists()){
-      //         this.rootPage = TabsPage;
-      //       }else{
-      //         this.rootPage = LoginSplashPage;
-      //       }
-      //     })
-      //   }
-      // })
+      firebase.auth().onAuthStateChanged((user)=>{
+        if(user){
+          this.db.object(`User Data/Users/${user.uid}`).snapshotChanges().subscribe(snap=>{
+            if(snap.payload.exists()){
+              this.rootPage = TabsPage;
+            }else{
+              this.rootPage = SignUpPage;
+            } 
+          })
+        }else{
+          this.rootPage = LoginPage;
+        }
+      })
 
       this.statusBar.styleDefault();
       this.splashScreen.hide();
