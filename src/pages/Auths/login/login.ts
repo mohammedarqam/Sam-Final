@@ -1,9 +1,7 @@
 import { Component,ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams, ToastController, AlertController, Tabs, LoadingController } from 'ionic-angular';
-import { Slides } from 'ionic-angular';
 import firebase from 'firebase';
 import { TabsPage } from '../../Supp/tabs/tabs';
-import { LoadedModule } from 'ionic-angular/umd/util/module-loader';
 
 
 @IonicPage()
@@ -13,13 +11,10 @@ import { LoadedModule } from 'ionic-angular/umd/util/module-loader';
 })
 export class LoginPage {
   phone : string;
-  otp : string;
-
-  confirmR : any;
+  pass : string;
 
 
-  @ViewChild(Slides) slides: Slides;
-  public recaptchaVerifier:firebase.auth.RecaptchaVerifier;
+
 
   constructor(
   public navCtrl: NavController,
@@ -28,88 +23,41 @@ export class LoginPage {
   public alertCtrl : AlertController,
   ) {
   }
-  ionViewDidEnter(){
-    this.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('recaptcha-container',{
-      'size' : 'invisible'
-    });
-  }
-  ionViewDidLoad() {
-    this.slides.lockSwipes(true);
-  }
 
-
-
-
-  signIn(){
-    const appVerifier = this.recaptchaVerifier;
-    const phoneNumberString = "+91" + this.phone;
-    let loading = this.loadingCtrl.create({
-      content: 'Please wait...'
-    });
-  
-    loading.present();
-    firebase.auth().signInWithPhoneNumber(phoneNumberString, appVerifier)
-      .then( confirmationResult => {
-        this.confirmR  = confirmationResult;
-    }).then(()=>{
-      this.gtSecond();
-      loading.dismiss();
-    }).catch(function (error) {
-      var msg = error.message;
-      this.presentToast(msg);
-    });
-  
-  }
-
-
-
-  checkPhone(){
-    if(this.phone.length==10){
-      this.signIn()
+  checkData(){
+  if(this.phone.length){
+    if(this.pass){
+      this.login();
     }else{
-      this.presentToast("Enter a valid Phone Number");
-    }    
+      this.presentToast("Enter Password");
+    }
+  }else{
+    this.presentToast("Phone Number not Valid");
   }
+}
 
-  checkOtp(){
-    this.VerifyOTP();
-    // if(this.otp){
-    //   this.VerifyOTP();
-    // }else{
-    //   this.presentToast("Enter  avlid OTP");
-    // }    
-  }
+login(){
+  var malGen = this.phone+ "@samatha.anm";
+  console.log(malGen)
+  let loading = this.loadingCtrl.create({
+    content: 'Please wait...'
+  });
 
-  VerifyOTP(){
-    this.confirmR.confirm(this.otp).then(()=>{
-      this.navCtrl.setRoot(TabsPage);
-    }).catch(function (error) {
-      alert(error.message)
-    });  
-
-  }
-
-  // checkUser(){
-  //   firebase.database().ref("User Data/Users").child(firebase.auth().currentUser.uid).once("value",snap=>{
-  //     if()
-  //   })
-  // }
+  loading.present();
+  firebase.auth().signInWithEmailAndPassword(malGen,this.pass).then(()=>{
+    this.navCtrl.setRoot(TabsPage)
+    loading.dismiss()
+  }).catch((er)=>{
+    loading.dismiss();
+    var mg = er.message;
+    this.presentToast(mg);
+  });
+}
 
 
 
-//Support Functions
 
-    //Slide functions
-  gtSecond(){
-    this.slides.lockSwipes(false);
-    this.slides.slideTo(1, 500);
-    this.slides.lockSwipes(true);
-  }
-  gtFirst(){
-    this.slides.lockSwipes(false);
-    this.slides.slideTo(0, 500);
-    this.slides.lockSwipes(true);
-  }
+
 
   //Toast Function
   presentToast(msg) {

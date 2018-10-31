@@ -10,7 +10,10 @@ import { ChangePassPage } from '../../Auths/change-pass/change-pass';
 })
 export class ProfilePage {
 
-  name : string;
+  fName : string;
+  lName : string;
+  email : string;
+  gender : string;
 
   loading = this.loadingCtrl.create({
     spinner: 'crescent',
@@ -24,11 +27,16 @@ export class ProfilePage {
   public alertCtrl : AlertController,
   public navParams: NavParams
   ) {
+    this.getUser();
   }
 
     getUser(){
-      firebase.database().ref("User Data/Users").child(firebase.auth().currentUser.uid).once("value",snap=>{
-        this.name = snap.val().Name;
+      firebase.database().ref("Anms").child(firebase.auth().currentUser.uid).once("value",snap=>{
+
+        this.fName = snap.val().FirstName;
+        this.lName = snap.val().LastName;
+        this.email = snap.val().Email;
+        this.gender = snap.val().Gender;
       })
     }
 
