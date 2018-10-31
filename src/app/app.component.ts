@@ -13,7 +13,7 @@ import { DataEntryPage } from '../pages/ActiveJobs/data-entry/data-entry';
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage:any = DataEntryPage;
+  rootPage:any = LoaderPage;
 
   constructor(
   public platform: Platform, 
@@ -27,13 +27,13 @@ export class MyApp {
   initializeApp() {
     this.platform.ready().then(() => {
       
-      // firebase.auth().onAuthStateChanged((user)=>{
-      //   if(user){
-      //     this.rootPage = TabsPage;
-      //   }else{
-      //     this.rootPage = LoginPage;
-      //   }
-      // })
+      firebase.auth().onAuthStateChanged((user)=>{
+        if(user){
+          this.rootPage = TabsPage;
+        }else{
+          this.rootPage = LoginPage;
+        }
+      })
 
       this.statusBar.styleDefault();
       this.splashScreen.hide();

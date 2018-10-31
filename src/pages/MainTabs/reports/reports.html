@@ -7,4 +7,13 @@
 
 <ion-content padding>
 
+    <ion-card *ngFor="let s of schools" >
+    <ion-card-content>
+      <p  ion-text color="primary">{{s.SchoolName}}</p>
+      <button ion-button float-right round (click)="addData(s)">View Report</button>
+    </ion-card-content>
+  </ion-card>
+
+
+
 </ion-content>

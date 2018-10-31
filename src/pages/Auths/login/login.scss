@@ -17,4 +17,27 @@ page-login {
     -webkit-transform: translate(-50%, 0);
     transform: translate(-50%, 0);
   }
+  .noBg{
+    background: rgba($color: #000000, $alpha: 0);
+    
+  }
+  .box{
+    position: absolute;
+    top: 28%;
+    width: 80%;
+  }
+  .bg-main {
+    background-image: url("../assets/imgs/log.JPG");
+    position: fixed;
+    width: 105%;
+    height: 100%;
+    top: 0;
+    left: -5%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    overflow: hidden;
+  }
+  ion-item{
+    margin: 0;
+  }
 }

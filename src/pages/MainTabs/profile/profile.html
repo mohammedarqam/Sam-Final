@@ -1,11 +1,6 @@
 <ion-header>
   <ion-navbar color="primary" >
     <ion-title>Profile</ion-title>
-    <ion-buttons end>
-      <button ion-button clear icon-only color="danger" (click)="signOutConfirm()" >
-        <ion-icon name="ios-power"></ion-icon>
-      </button>
-    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
@@ -41,6 +36,10 @@
   </ion-item>
 </ion-list>
 
+      <button ion-button block color="danger" (click)="signOutConfirm()" >
+        <ion-icon name="ios-power" padding-right ></ion-icon>
+        Sign Out
+      </button>
 
 
 

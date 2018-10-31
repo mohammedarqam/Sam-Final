@@ -16,6 +16,10 @@ import { ActiveJobsPage } from '../pages/MainTabs/active-jobs/active-jobs';
 import { FollowUpPage } from '../pages/MainTabs/follow-up/follow-up';
 import { ReportsPage } from '../pages/MainTabs/reports/reports';
 import { DataEntryPage } from '../pages/ActiveJobs/data-entry/data-entry';
+import { Camera } from '@ionic-native/camera';
+import { DataConfirmPage } from '../pages/ActiveJobs/data-confirm/data-confirm';
+import { ReportDetailsPage } from '../pages/Reports/report-details/report-details';
+import { ChangePassPage } from '../pages/Auths/change-pass/change-pass';
 
 
 export const firebaseCred = {
@@ -40,6 +44,9 @@ firebase.initializeApp(firebaseCred);
     FollowUpPage,
     ReportsPage,
     DataEntryPage,
+    DataConfirmPage,
+    ReportDetailsPage,
+    ChangePassPage,
   ],
   imports: [
     BrowserModule,
@@ -61,10 +68,14 @@ firebase.initializeApp(firebaseCred);
     FollowUpPage,
     ReportsPage,
     DataEntryPage,
+    DataConfirmPage,
+    ReportDetailsPage,
+    ChangePassPage,
   ],
   providers: [
     StatusBar,
     SplashScreen,
+    Camera,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

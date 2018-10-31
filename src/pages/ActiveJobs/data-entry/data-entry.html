@@ -6,9 +6,12 @@
 
 
 <ion-content class="cardback" padding >
-  <!-- <h1>{{skl.SchoolName}} </h1> -->
+  <h1>{{skl.SchoolName}} </h1>
 
   <ion-grid>
+
+    <!-- <button ion-button (click)="takePicture()">Take Picture</button> -->
+    <img [src]="base64Image" *ngIf="base64Image" />
 
     <ion-row>
       <ion-item>
@@ -74,14 +77,16 @@
     <ion-row>
       <ion-col col-10>
       <ion-item>
-        <ion-input type="number" [(ngModel)]="hbl" placeholder="HB Level"></ion-input>
+        <ion-input type="number" [(ngModel)]="hbl" (ionChange)="getSev()" placeholder="HB Level"></ion-input>
       </ion-item>
       </ion-col>
       <ion-col col-2 >
         g/dl
       </ion-col>
     </ion-row>
-
+    <ion-item ion-text text-center *ngIf="hbl" >
+      {{sev}}
+    </ion-item>
     <ion-row>
       <ion-item>
         <ion-input type="number" [(ngModel)]="aadhar" placeholder="Aadhar Number"></ion-input>

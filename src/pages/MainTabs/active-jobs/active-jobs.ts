@@ -25,6 +25,7 @@ export class ActiveJobsPage {
       snap.forEach(snip=>{
         var temp : any = snip.val();
         temp.key = snip.key;
+        console.log(temp)
         this.schools.push(temp);
       })
     })      

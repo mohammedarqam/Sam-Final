@@ -1,12 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
-/**
- * Generated class for the ReportsPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import * as firebase from 'firebase';
+import { ReportDetailsPage } from '../../Reports/report-details/report-details';
 
 @IonicPage()
 @Component({
@@ -15,11 +10,29 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class ReportsPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+
+  schools : Array<any> = [];
+
+  constructor(
+  public navCtrl: NavController, 
+  public navParams: NavParams
+  ) {
+    this.getSchools();
+  }
+  getSchools(){
+    firebase.database().ref("Anm Assigns").child(firebase.auth().currentUser.uid).once("value",snap=>{
+      this.schools = [];
+      snap.forEach(snip=>{
+        var temp : any = snip.val();
+        temp.key = snip.key;
+        console.log(temp)
+        this.schools.push(temp);
+      })
+    })      
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad ReportsPage');
+  addData(s){
+    this.navCtrl.push(ReportDetailsPage,{school : s.School})
   }
 
 }

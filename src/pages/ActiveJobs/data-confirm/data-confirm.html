@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-navbar color="primary" >
+    <ion-title>Student Analysis</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+
+
+  <ion-slides>
+    <ion-slide>
+
+      <p class="hbl">{{hbl}}</p>
+
+      <p>{{sev}}</p>
+ 
+      <button ion-button (click)="anothrStudent()" >Add Another Student </button>
+      <button ion-button (click)="schoolReport()">View School Report</button>
+      <button ion-button (click)="done()" >Done </button>
+       
+    </ion-slide>
+  </ion-slides>
+
+ 
+</ion-content>

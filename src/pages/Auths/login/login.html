@@ -1,32 +1,27 @@
-<ion-header>
-  <ion-navbar transparent >
-  </ion-navbar>
-</ion-header>
-
 <ion-content padding>
-  <ion-slides >
 
+  <div class="bg-main">
+  </div>
 
-    <ion-slide>
-        <img src="assets/imgs/tempLogo.png" class="logo" />
-          <ion-item padding-bottom >
-            <ion-label floating>Phone Number</ion-label>
-            <ion-input type="number" [(ngModel)]="phone"></ion-input>
+  <div class="box">
+
+          <ion-item  class="noBg" >
+            <ion-input type="number" placeholder="Phone Number" [(ngModel)]="phone"></ion-input>
           </ion-item>
 
-      <ion-item  >
-        <ion-label floating>Password</ion-label>
-        <ion-input type="password" [(ngModel)]="pass"></ion-input>
+      <ion-item class="noBg" >
+        <ion-input type="password" placeholder="Password" [(ngModel)]="pass"></ion-input>
       </ion-item>
       
-      
-      <button ion-button round (click)="checkData()">Log In</button>
+      <ion-slides>
+      <ion-slide >
+      <button ion-button round small margin-top (click)="checkData()">Log In</button>
     </ion-slide>
 
 
 
   </ion-slides>
-
+</div>
 
 
 
