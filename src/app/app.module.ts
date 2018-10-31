@@ -15,6 +15,7 @@ import { LoaderPage } from '../pages/Supp/loader/loader';
 import { ActiveJobsPage } from '../pages/MainTabs/active-jobs/active-jobs';
 import { FollowUpPage } from '../pages/MainTabs/follow-up/follow-up';
 import { ReportsPage } from '../pages/MainTabs/reports/reports';
+import { DataEntryPage } from '../pages/ActiveJobs/data-entry/data-entry';
 
 
 export const firebaseCred = {
@@ -38,6 +39,7 @@ firebase.initializeApp(firebaseCred);
     ActiveJobsPage,
     FollowUpPage,
     ReportsPage,
+    DataEntryPage,
   ],
   imports: [
     BrowserModule,
@@ -58,6 +60,7 @@ firebase.initializeApp(firebaseCred);
     ActiveJobsPage,
     FollowUpPage,
     ReportsPage,
+    DataEntryPage,
   ],
   providers: [
     StatusBar,

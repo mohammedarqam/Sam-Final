@@ -7,12 +7,13 @@ import { LoginPage } from '../pages/Auths/login/login';
 import * as firebase from 'firebase';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { LoaderPage } from '../pages/Supp/loader/loader';
+import { DataEntryPage } from '../pages/ActiveJobs/data-entry/data-entry';
 
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage:any = LoaderPage;
+  rootPage:any = DataEntryPage;
 
   constructor(
   public platform: Platform, 
@@ -26,13 +27,13 @@ export class MyApp {
   initializeApp() {
     this.platform.ready().then(() => {
       
-      firebase.auth().onAuthStateChanged((user)=>{
-        if(user){
-          this.rootPage = TabsPage;
-        }else{
-          this.rootPage = LoginPage;
-        }
-      })
+      // firebase.auth().onAuthStateChanged((user)=>{
+      //   if(user){
+      //     this.rootPage = TabsPage;
+      //   }else{
+      //     this.rootPage = LoginPage;
+      //   }
+      // })
 
       this.statusBar.styleDefault();
       this.splashScreen.hide();

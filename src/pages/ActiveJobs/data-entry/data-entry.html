@@ -1,0 +1,117 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>Enter Data</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content class="cardback" padding >
+  <!-- <h1>{{skl.SchoolName}} </h1> -->
+
+  <ion-grid>
+
+    <ion-row>
+      <ion-item>
+        <ion-input type="text" placeholder="Student Name" [(ngModel)]="sname"></ion-input>
+      </ion-item>
+    </ion-row>
+
+    <ion-row>
+      <ion-item>
+        <ion-input type="text" placeholder="Parent Name" [(ngModel)]="pname"></ion-input>
+      </ion-item>
+    </ion-row>
+
+    <ion-row>
+      <ion-item>
+        <ion-input type="number" placeholder="Mobile"  [(ngModel)]="mobile"  ></ion-input>
+      </ion-item>
+    </ion-row>
+
+
+    <ion-row>
+      <ion-col col-8>
+      <ion-item>
+        <ion-label >Date of Birth </ion-label>
+        <ion-datetime displayFormat="DD/MMM/YYYY" (ionChange)="calcAge()" [(ngModel)]="dob"></ion-datetime>
+      </ion-item>
+      </ion-col>
+      <ion-col col-2 text-right >
+        <h1 ion-text color="primary">{{age}}</h1>
+      </ion-col>
+      <ion-col col-2>
+        <p>/yrs</p>
+      </ion-col>
+    </ion-row>
+
+
+    <ion-row>
+      <ion-item>
+        <ion-label >Class </ion-label>
+        <ion-select [(ngModel)]="class">
+          <ion-option value="7">7th</ion-option>
+          <ion-option value="8">8th</ion-option>
+          <ion-option value="9">9th</ion-option>
+          <ion-option value="10">10th</ion-option>
+          <ion-option value="11">11th</ion-option>
+          <ion-option value="12">12th</ion-option>
+        </ion-select>
+      </ion-item>
+    </ion-row>
+
+    <ion-row>
+      <ion-item>
+        <ion-input type="number" [(ngModel)]="height" placeholder="Height in Inches" ></ion-input>
+      </ion-item>
+    </ion-row>
+
+    <ion-row>
+      <ion-item>
+        <ion-input type="number" [(ngModel)]="weight" placeholder="Weight in Kgs" ></ion-input>
+      </ion-item>
+    </ion-row>
+
+    <ion-row>
+      <ion-col col-10>
+      <ion-item>
+        <ion-input type="number" [(ngModel)]="hbl" placeholder="HB Level"></ion-input>
+      </ion-item>
+      </ion-col>
+      <ion-col col-2 >
+        g/dl
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-item>
+        <ion-input type="number" [(ngModel)]="aadhar" placeholder="Aadhar Number"></ion-input>
+      </ion-item>
+    </ion-row>
+
+    <ion-row>
+      <ion-item>
+        <ion-textarea  [(ngModel)]="address" placeholder="Residential Address" ></ion-textarea>
+      </ion-item>
+    </ion-row>
+
+    <ion-row>
+      <ion-item>
+        <ion-label >Community</ion-label> 
+        <ion-select [(ngModel)]="cmmu" >
+          <ion-option value="SC">SC</ion-option>
+          <ion-option value="ST">ST</ion-option>
+          <ion-option value="BC">BC</ion-option>
+          <ion-option value="OC">OC</ion-option>
+          <ion-option value="Minority">Minority</ion-option>
+        </ion-select>
+      </ion-item>
+    </ion-row>
+
+    <button ion-button (click)="checkData()">Submit</button>
+
+
+
+  </ion-grid>
+
+
+</ion-content>
