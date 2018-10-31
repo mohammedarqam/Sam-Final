@@ -4,9 +4,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { TabsPage } from '../pages/Supp/tabs/tabs';
 import { LoginPage } from '../pages/Auths/login/login';
-import { LoginSplashPage } from '../pages/Auths/login-splash/login-splash';
 import * as firebase from 'firebase';
-import { SignUpPage } from '../pages/Auths/sign-up/sign-up';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { LoaderPage } from '../pages/Supp/loader/loader';
 
@@ -30,15 +28,9 @@ export class MyApp {
       
       firebase.auth().onAuthStateChanged((user)=>{
         if(user){
-          this.db.object(`User Data/Users/${user.uid}`).snapshotChanges().subscribe(snap=>{
-            if(snap.payload.exists()){
-              this.rootPage = TabsPage;
-            }else{
-              this.rootPage = SignUpPage;
-            } 
-          })
+          this.rootPage = TabsPage;
         }else{
-          this.rootPage = LoginSplashPage;
+          this.rootPage = LoginPage;
         }
       })
 

@@ -1,9 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController, LoadingController } from 'ionic-angular';
 import * as firebase from 'firebase';
-import { YourOrdersPage } from '../../ProfilePages/your-orders/your-orders';
-import { ContactUsPage } from '../../ProfilePages/contact-us/contact-us';
-import { FaqSPage } from '../../ProfilePages/faq-s/faq-s';
+import { ChangePassPage } from '../../Auths/change-pass/change-pass';
 
 @IonicPage()
 @Component({
@@ -63,7 +61,5 @@ signOutConfirm(){
     });
   }
 
-  gtYourOrders(){this.navCtrl.push(YourOrdersPage)}
-  gtContact(){this.navCtrl.push(ContactUsPage)}
-  gtFaqs(){this.navCtrl.push(FaqSPage)}
+  gtChangePass(){this.navCtrl.push(ChangePassPage)}
 }

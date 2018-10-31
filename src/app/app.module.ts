@@ -8,28 +8,22 @@ import * as firebase from 'firebase';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import {AngularFireAuthModule} from 'angularfire2/auth';
-import { HomePage } from '../pages/MainTabs/home/home';
 import { TabsPage } from '../pages/Supp/tabs/tabs';
-import { ExplorePage } from '../pages/MainTabs/explore/explore';
-import { NavigatePage } from '../pages/MainTabs/navigate/navigate';
-import { NotificationsPage } from '../pages/MainTabs/notifications/notifications';
 import { ProfilePage } from '../pages/MainTabs/profile/profile';
 import { LoginPage } from '../pages/Auths/login/login';
-import { LoginSplashPage } from '../pages/Auths/login-splash/login-splash';
-import { SignUpPage } from '../pages/Auths/sign-up/sign-up';
 import { LoaderPage } from '../pages/Supp/loader/loader';
-import { YourOrdersPage } from '../pages/ProfilePages/your-orders/your-orders';
-import { ContactUsPage } from '../pages/ProfilePages/contact-us/contact-us';
-import { FaqSPage } from '../pages/ProfilePages/faq-s/faq-s';
+import { ActiveJobsPage } from '../pages/MainTabs/active-jobs/active-jobs';
+import { FollowUpPage } from '../pages/MainTabs/follow-up/follow-up';
+import { ReportsPage } from '../pages/MainTabs/reports/reports';
 
 
 export const firebaseCred = {
-  apiKey: "AIzaSyDfYGCZchTJHmNBlk4-T4-B24d7qtBs4LQ",
-  authDomain: "posters-83a2e.firebaseapp.com",
-  databaseURL: "https://posters-83a2e.firebaseio.com",
-  projectId: "posters-83a2e",
-  storageBucket: "posters-83a2e.appspot.com",
-  messagingSenderId: "9709869347"
+  apiKey: "AIzaSyBBngtTf37X5L59EnuqNnWlGFRqhgwmWQU",
+  authDomain: "samatha-8edcd.firebaseapp.com",
+  databaseURL: "https://samatha-8edcd.firebaseio.com",
+  projectId: "samatha-8edcd",
+  storageBucket: "samatha-8edcd.appspot.com",
+  messagingSenderId: "659890863002"
 };
 firebase.initializeApp(firebaseCred);
 
@@ -37,19 +31,13 @@ firebase.initializeApp(firebaseCred);
 @NgModule({
   declarations: [
     MyApp,
-    HomePage,
     TabsPage,
-    ExplorePage,
-    NavigatePage,
-    NotificationsPage,
     ProfilePage,
     LoginPage,
-    LoginSplashPage,
-    SignUpPage,
     LoaderPage,
-    YourOrdersPage,
-    ContactUsPage,
-    FaqSPage,
+    ActiveJobsPage,
+    FollowUpPage,
+    ReportsPage,
   ],
   imports: [
     BrowserModule,
@@ -63,19 +51,13 @@ firebase.initializeApp(firebaseCred);
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage,
     TabsPage,
-    ExplorePage,
-    NavigatePage,
-    NotificationsPage,
     ProfilePage,
     LoginPage,
-    LoginSplashPage,
-    SignUpPage,
     LoaderPage,
-    YourOrdersPage,
-    ContactUsPage,
-    FaqSPage,
+    ActiveJobsPage,
+    FollowUpPage,
+    ReportsPage,
   ],
   providers: [
     StatusBar,
