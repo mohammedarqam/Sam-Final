@@ -19,19 +19,49 @@ export class ReportDetailsPage {
 
   students : Array<any> = [];
   
+public doughnutChartLabels:string[] = ['Severely Anaemic', 'Moderately Anaemic','Mildly Anaemic','Healthy'];
+public doughnutChartData:number[] = [0,0,0,0];
+public doughnutChartType:string = 'doughnut';
+public doughnutLegend : boolean = true;
+
 
   constructor(
   public navCtrl: NavController, 
   public navParams: NavParams
   ) {
     this.getSevere();
+    this.getModerate();
+    this.getMild();
+    this.getHEalthy();
   }
 
   getSevere(){
     firebase.database().ref("Subs/Schools").child(this.schoolkey).child("Severity").child("Severely Anaemic").once("value",itemSnap=>{
-      console.log(itemSnap.numChildren());
       this.severe = itemSnap.numChildren();
+      
+    })
+  }
+  getModerate(){
+    firebase.database().ref("Subs/Schools").child(this.schoolkey).child("Severity").child("Moderately Anaemic").once("value",itemSnap=>{
+      this.moderate = itemSnap.numChildren();
     })  
+  }
+  getMild(){
+    firebase.database().ref("Subs/Schools").child(this.schoolkey).child("Severity").child("Mildly  Anaemic").once("value",itemSnap=>{
+      this.mild = itemSnap.numChildren();
+    })  
+  }
+  getHEalthy(){
+    firebase.database().ref("Subs/Schools").child(this.schoolkey).child("Severity").child("Healthy").once("value",itemSnap=>{
+      this.healthy = itemSnap.numChildren();
+    })  
+  }
+  public chartClicked(e:any):void {
+    console.log(e);
+  }
+  
+  public chartHovered(e:any):void {
+    console.log(e);
   }
 
 }

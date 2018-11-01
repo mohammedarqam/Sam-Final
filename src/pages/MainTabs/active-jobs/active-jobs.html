@@ -5,14 +5,21 @@
 </ion-header>
 
 
-<ion-content padding class="cardback" >
+<ion-content  class="cardback" padding >
 
-  <ion-card *ngFor="let s of schools" >
-    <ion-card-content>
-      <p  ion-text color="primary">{{s.SchoolName}}</p>
-      <button ion-button float-right round (click)="addData(s)">Add Data</button>
-    </ion-card-content>
-  </ion-card>
+  <ion-grid>
+    <ion-row *ngFor="let s of schools" class="rowCls" >
+      <ion-col col-8>
+        <p  ion-text padding-left color="primary">{{s.SchoolName}}</p>
+      </ion-col>
+      <ion-col  col-4 (click)="addData(s)" padding-top  class="btnClas" >
+        Add Data
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+
+
 
 
 </ion-content>

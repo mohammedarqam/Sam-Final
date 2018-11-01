@@ -142,8 +142,13 @@ export class DataEntryPage {
     }).then((res) => {
       firebase.database().ref("Subs/Schools").child(this.skl.School).child("Students").child(res.key).set(true).then(() => {
         firebase.database().ref("Subs/Schools").child(this.skl.School).child("Severity").child(this.sev).child(res.key).set(true).then(() => {
-          this.navCtrl.push(DataConfirmPage, { hbl: this.hbl, sev: this.sev, school: this.skl });
-          loading.dismiss();
+          firebase.database().ref("Counters/Mandals").child(this.skl.Mandal).child(this.sev).child(res.key).set(true).then(()=>{
+            firebase.database().ref("Counters/Villages").child(this.skl.Village).child(this.sev).child(res.key).set(true).then(()=>{
+                this.navCtrl.push(DataConfirmPage, { hbl: this.hbl, sev: this.sev, school: this.skl });
+                loading.dismiss();
+
+            })
+          })
         })
       });
     })

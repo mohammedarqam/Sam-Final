@@ -1,8 +1,13 @@
 page-loader {
-    .splashBack{
-        left: 0%;
-        width: 100%;
-        background:linear-gradient(0deg,rgba(0,0,0,0.7)),url("../../assets/imgs/back.png");
-        background-size:cover;
-        }
-}
+    .bg-main {
+        background-image: url("../assets/imgs/log.JPG");
+        position: fixed;
+        width: 105%;
+        height: 100%;
+        top: 0;
+        left: -5%;
+        background-repeat: no-repeat;
+        background-size: cover;
+        overflow: hidden;
+      }
+    }

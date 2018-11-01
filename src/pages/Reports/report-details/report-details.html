@@ -9,6 +9,22 @@
 
   <ion-card>
     <ion-card-content>
+      <ion-card-title color="primary">Schools Status</ion-card-title>
+      <div style="display: block">
+        <canvas baseChart
+                    [data]="doughnutChartData"
+                    [labels]="doughnutChartLabels"
+                    [legend]="doughnutLegend"
+                    [chartType]="doughnutChartType"
+                    (chartHover)="chartHovered($event)"
+                    (chartClick)="chartClicked($event)"></canvas>
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+
+  <ion-card>
+    <ion-card-content>
       <ion-item>
         <h2 ion-text color="primary" item-start> Severely Anaemic </h2>
         <h2 item-end>{{severe}}</h2>
