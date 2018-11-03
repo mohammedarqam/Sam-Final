@@ -19,10 +19,10 @@ export class ReportDetailsPage {
 
   students : Array<any> = [];
   
-public doughnutChartLabels:string[] = ['Severely Anaemic', 'Moderately Anaemic','Mildly Anaemic','Healthy'];
-public doughnutChartData:number[] = [0,0,0,0];
-public doughnutChartType:string = 'doughnut';
-public doughnutLegend : boolean = true;
+// public doughnutChartLabels:string[] = ['Severely Anaemic', 'Moderately Anaemic','Mildly Anaemic','Healthy'];
+// public doughnutChartData:number[] = [0,0,0,0];
+// public doughnutChartType:string = 'doughnut';
+// public doughnutLegend : boolean = true;
 
 
   constructor(
