@@ -23,12 +23,12 @@ import { ChangePassPage } from '../pages/Auths/change-pass/change-pass';
 
 
 export const firebaseCred = {
-  apiKey: "AIzaSyBBngtTf37X5L59EnuqNnWlGFRqhgwmWQU",
-  authDomain: "samatha-8edcd.firebaseapp.com",
-  databaseURL: "https://samatha-8edcd.firebaseio.com",
-  projectId: "samatha-8edcd",
-  storageBucket: "samatha-8edcd.appspot.com",
-  messagingSenderId: "659890863002"
+  apiKey: "AIzaSyD_YDbb3sjzzqVc-N1cWBbWi9lJKYImzkQ",
+  authDomain: "samatha-app.firebaseapp.com",
+  databaseURL: "https://samatha-app.firebaseio.com",
+  projectId: "samatha-app",
+  storageBucket: "samatha-app.appspot.com",
+  messagingSenderId: "1080627282737"
 };
 firebase.initializeApp(firebaseCred);
 

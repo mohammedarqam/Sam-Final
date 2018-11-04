@@ -10,8 +10,7 @@ import { ChangePassPage } from '../../Auths/change-pass/change-pass';
 })
 export class ProfilePage {
 
-  fName : string;
-  lName : string;
+  name : string;
   email : string;
   gender : string;
 
@@ -32,9 +31,7 @@ export class ProfilePage {
 
     getUser(){
       firebase.database().ref("Anms").child(firebase.auth().currentUser.uid).once("value",snap=>{
-
-        this.fName = snap.val().FirstName;
-        this.lName = snap.val().LastName;
+        this.name = snap.val().Name;
         this.email = snap.val().Email;
         this.gender = snap.val().Gender;
       })

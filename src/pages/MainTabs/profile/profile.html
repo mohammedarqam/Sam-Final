@@ -5,19 +5,35 @@
 </ion-header>
 
 
-<ion-content class="cardback" padding>
+<ion-content class="cardback" >
 <ion-card>
   <ion-card-content>
     <ion-grid>
       <ion-row>
-        <ion-col col-4>
-          <img src="assets/imgs/blank-user.png" />
-        </ion-col>
         <ion-col col-8 text-center>
           <ion-row>
-          <h2 ion-text >{{fName}}&nbsp;{{lName}}</h2>
-          <h3 ion-text >{{email}}</h3>
-          <h3 ion-text >{{gender}}</h3>
+            <ion-col col-3>
+              <ion-row>
+                <p ion-text color="primary" >Name</p>
+              </ion-row>
+              <ion-row>
+                <p ion-text color="primary" >Email</p>
+              </ion-row>
+              <ion-row>
+                <p ion-text color="primary" >Gender</p>
+              </ion-row>
+            </ion-col>
+            <ion-col push-2 col-6>
+              <ion-row>
+                <p>{{name}} </p>
+              </ion-row>
+              <ion-row>
+                  <p>{{email}} </p>
+                </ion-row>
+              <ion-row>
+                <p>{{gender}} </p>
+              </ion-row>
+              </ion-col>
           </ion-row>
           <ion-row>
           <p ion-text></p>
