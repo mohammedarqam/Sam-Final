@@ -20,6 +20,7 @@ import { Camera } from '@ionic-native/camera';
 import { DataConfirmPage } from '../pages/ActiveJobs/data-confirm/data-confirm';
 import { ReportDetailsPage } from '../pages/Reports/report-details/report-details';
 import { ChangePassPage } from '../pages/Auths/change-pass/change-pass';
+import { CamsPage } from '../pages/cams/cams';
 
 
 export const firebaseCred = {
@@ -47,6 +48,7 @@ firebase.initializeApp(firebaseCred);
     DataConfirmPage,
     ReportDetailsPage,
     ChangePassPage,
+    CamsPage,
   ],
   imports: [
     BrowserModule,
@@ -71,6 +73,7 @@ firebase.initializeApp(firebaseCred);
     DataConfirmPage,
     ReportDetailsPage,
     ChangePassPage,
+    CamsPage,
   ],
   providers: [
     StatusBar,
