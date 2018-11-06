@@ -27,7 +27,7 @@ export class DataEntryPage {
   aadhar: string;
   address: string;
   cmmu: string;
-
+  followUpDays : string;
 
   age: number;
   sev: string;
@@ -86,16 +86,20 @@ export class DataEntryPage {
   getSev() {
     var hbnew = +this.hbl
     if (hbnew <= 6) {
-      this.sev = "Severely Anaemic"
+      this.sev = "Severely Anaemic";
+      this.followUpDays = "30";
     }
     if (hbnew == 7 || hbnew == 8) {
       this.sev = "Moderately Anaemic"
+      this.followUpDays = "45";
     }
     if (hbnew == 9 || hbnew == 10) {
       this.sev = "Mildly  Anaemic"
+      this.followUpDays = "45";
     }
     if (hbnew >= 11) {
       this.sev = "Healthy"
+      this.followUpDays = "60";
     }
   }
 
@@ -139,14 +143,21 @@ export class DataEntryPage {
       Age: this.age,
       Severity: this.sev,
       EntryDate: moment().format(),
+      FollowUpDate  :moment().add(this.followUpDays,'day').format()
     }).then((res) => {
-      firebase.database().ref("Subs/Schools").child(this.skl.School).child("Students").child(res.key).set(true).then(() => {
-        firebase.database().ref("Subs/Schools").child(this.skl.School).child("Severity").child(this.sev).child(res.key).set(true).then(() => {
-          firebase.database().ref("Counters/Mandals").child(this.skl.Mandal).child(this.sev).child(res.key).set(true).then(()=>{
-            firebase.database().ref("Counters/Villages").child(this.skl.Village).child(this.sev).child(res.key).set(true).then(()=>{
-                this.navCtrl.push(DataConfirmPage, { hbl: this.hbl, sev: this.sev, school: this.skl });
-                loading.dismiss();
+      firebase.database().ref("SubsIndex/Schools").child(this.skl.School).child("Students").child(res.key).set(true).then(() => {
+        firebase.database().ref("Counters/Schools").child(this.skl.School).child("Severity").child(this.sev).child(res.key).set(true).then(() => {
+          firebase.database().ref("Counters/Mandals").child(this.skl.Mandal).child(this.sev).child(res.key).set(true).then(() => {
+            firebase.database().ref("Counters/Villages").child(this.skl.Village).child(this.sev).child(res.key).set(true).then(() => {
+              firebase.database().ref("Counters/Schools").child(this.skl.School).child(this.cmmu).child(res.key).set(true).then(() => {
+                firebase.database().ref("Counters/Mandals").child(this.skl.Mandal).child(this.cmmu).child(res.key).set(true).then(() => {
+                  firebase.database().ref("Counters/Villages").child(this.skl.Village).child(this.cmmu).child(res.key).set(true).then(() => {
+                    loading.dismiss();
+                    this.navCtrl.push(DataConfirmPage, { hbl: this.hbl, sev: this.sev, school: this.skl });
 
+                  })
+                })
+              })
             })
           })
         })
@@ -157,7 +168,10 @@ export class DataEntryPage {
 
 
 
-
+  gtFollowup(){
+    console.log(moment().format('D/MMM/YYYY'))
+    console.log(moment().add(45,'day').format('D/MMM/YYYY'))
+  }
 
 
 
