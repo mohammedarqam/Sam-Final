@@ -30,10 +30,11 @@ export class ProfilePage {
   }
 
     getUser(){
-      firebase.database().ref("Anms").child(firebase.auth().currentUser.uid).once("value",snap=>{
+      firebase.database().ref("Organisms/Anms").child(firebase.auth().currentUser.uid).once("value",snap=>{
         this.name = snap.val().Name;
         this.email = snap.val().Email;
         this.gender = snap.val().Gender;
+        console.log(snap.val())
       })
     }
 

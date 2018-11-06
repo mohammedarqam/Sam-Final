@@ -1,12 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
-/**
- * Generated class for the FollowUpPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
@@ -15,11 +9,12 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class FollowUpPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-  }
+  fups : Array<any> = [];
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad FollowUpPage');
+  constructor(
+  public navCtrl: NavController, 
+  public navParams: NavParams
+  ) {
   }
 
 }

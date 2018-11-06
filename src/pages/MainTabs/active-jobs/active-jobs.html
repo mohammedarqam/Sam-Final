@@ -7,7 +7,7 @@
 
 <ion-content  class="cardback" padding >
 
-  <ion-grid>
+  <ion-grid *ngIf="schools.length" >  
     <ion-row *ngFor="let s of schools" class="rowCls" >
       <ion-col col-8>
         <p  ion-text padding-left color="primary">{{s.SchoolName}}</p>
@@ -18,6 +18,9 @@
     </ion-row>
   </ion-grid>
 
+  <ion-grid *ngIf="!schools.length" >  
+    <img src="../../../assets/imgs/ndf.png"/>
+  </ion-grid>
 
 
 
