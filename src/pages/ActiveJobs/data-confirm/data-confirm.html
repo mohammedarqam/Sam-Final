@@ -14,6 +14,11 @@
       <p class="hbl">{{hbl}}</p>
 
       <p>{{sev}}</p>
+
+      <ion-item>
+        <p item-start ion-text color="primary">Next Follow Up</p>
+        <p item-end>{{FollowUp | date : 'mediumDate'}}</p>
+      </ion-item>
  
       <button ion-button (click)="anothrStudent()" >Add Another Student </button>
       <button ion-button (click)="schoolReport()">View School Report</button>

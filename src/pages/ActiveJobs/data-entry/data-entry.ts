@@ -128,7 +128,7 @@ export class DataEntryPage {
     });
 
     loading.present();
-    firebase.database().ref("Students").push({
+    firebase.database().ref("Organisms/Students").push({
       StudentName: this.sname,
       ParentName: this.pname,
       Mobile: this.mobile,
@@ -147,13 +147,13 @@ export class DataEntryPage {
     }).then((res) => {
       firebase.database().ref("SubsIndex/Schools").child(this.skl.School).child("Students").child(res.key).set(true).then(() => {
         firebase.database().ref("Counters/Schools").child(this.skl.School).child("Severity").child(this.sev).child(res.key).set(true).then(() => {
-          firebase.database().ref("Counters/Mandals").child(this.skl.Mandal).child(this.sev).child(res.key).set(true).then(() => {
-            firebase.database().ref("Counters/Villages").child(this.skl.Village).child(this.sev).child(res.key).set(true).then(() => {
-              firebase.database().ref("Counters/Schools").child(this.skl.School).child(this.cmmu).child(res.key).set(true).then(() => {
-                firebase.database().ref("Counters/Mandals").child(this.skl.Mandal).child(this.cmmu).child(res.key).set(true).then(() => {
-                  firebase.database().ref("Counters/Villages").child(this.skl.Village).child(this.cmmu).child(res.key).set(true).then(() => {
+          firebase.database().ref("Counters/Mandals").child(this.skl.Mandal).child("Severity").child(this.sev).child(res.key).set(true).then(() => {
+            firebase.database().ref("Counters/Villages").child(this.skl.Village).child("Severity").child(this.sev).child(res.key).set(true).then(() => {
+              firebase.database().ref("Counters/Schools").child(this.skl.School).child("Community").child(this.cmmu).child(res.key).set(true).then(() => {
+                firebase.database().ref("Counters/Mandals").child(this.skl.Mandal).child("Community").child(this.cmmu).child(res.key).set(true).then(() => {
+                  firebase.database().ref("Counters/Villages").child(this.skl.Village).child("Community").child(this.cmmu).child(res.key).set(true).then(() => {
                     loading.dismiss();
-                    this.navCtrl.push(DataConfirmPage, { hbl: this.hbl, sev: this.sev, school: this.skl });
+                    this.navCtrl.push(DataConfirmPage, { hbl: this.hbl, sev: this.sev, school: this.skl,FollowUp : moment().add(this.followUpDays,'day').format() });
 
                   })
                 })

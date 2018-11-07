@@ -8,8 +8,21 @@
 <ion-content class="cardback" padding>
 
 
+  <ion-grid *ngIf="schools.length" >  
+    <ion-row *ngFor="let s of schools" class="rowCls" >
+      <ion-col col-8>
+        <p  ion-text padding-left color="primary">{{s.SchoolName}}</p>
+      </ion-col>
+      <ion-col  col-4  padding-top  class="btnClas" >
+        25 Days
+      </ion-col>
+      <ion-item class="item-top-line" >
+        <button ion-button clear (click)="showStudents(s)" >View Students</button>
+      </ion-item>
+    </ion-row>
+  </ion-grid>
 
-  <ion-grid *ngIf="!fups.length" >  
+  <ion-grid *ngIf="!schools.length" >  
     <img src="../../../assets/imgs/ndf.png"/>
   </ion-grid>
 

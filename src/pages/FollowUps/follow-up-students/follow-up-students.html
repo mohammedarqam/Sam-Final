@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-navbar color="primary" >
+    <ion-title>Students</ion-title>
+    <ion-buttons end >
+      <button ion-button clear>{{students.length}}</button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content class="cardback" padding >
+
+    <ion-grid>  
+    <ion-row *ngFor="let s of students" class="rowCls" >
+      <ion-col col-8>
+        <p  ion-text padding-left color="primary">{{s.StudentName}}</p>
+      </ion-col>
+      <ion-col  col-4  padding-top  class="btnClas" >
+        25 Days
+      </ion-col>
+    <ion-buttons class="item-top-line">
+      <button ion-button clear (click)="addUpdate()">Add Update</button>
+      <button ion-button clear (click)="details(s)">Details</button>
+    </ion-buttons>
+    </ion-row>
+  </ion-grid>
+
+
+
+
+</ion-content>

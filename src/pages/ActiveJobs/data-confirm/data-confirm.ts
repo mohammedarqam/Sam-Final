@@ -13,7 +13,7 @@ export class DataConfirmPage {
   sev = this.navParams.get("sev");
   hbl = this.navParams.get("hbl");
   school = this.navParams.get("school");
-
+  FollowUp = this.navParams.get("FollowUp")
 
 
   constructor(
