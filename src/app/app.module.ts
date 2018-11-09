@@ -23,6 +23,8 @@ import { ChangePassPage } from '../pages/Auths/change-pass/change-pass';
 import { CamsPage } from '../pages/cams/cams';
 import { FollowUpStudentsPage } from '../pages/FollowUps/follow-up-students/follow-up-students';
 import { StudentDetailsPage } from '../pages/FollowUps/student-details/student-details';
+import { ChartsModule } from 'ng2-charts';
+import { ReportStudentsPage } from '../pages/Reports/report-students/report-students';
 
 
 export const firebaseCred = {
@@ -53,12 +55,14 @@ firebase.initializeApp(firebaseCred);
     CamsPage,
     FollowUpStudentsPage,
     StudentDetailsPage,
+    ReportStudentsPage,
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp, {
       scrollAssist: false
     }),
+    ChartsModule,
     AngularFireModule.initializeApp(firebaseCred),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
@@ -80,6 +84,7 @@ firebase.initializeApp(firebaseCred);
     CamsPage,
     FollowUpStudentsPage,
     StudentDetailsPage,
+    ReportStudentsPage,
   ],
   providers: [
     StatusBar,

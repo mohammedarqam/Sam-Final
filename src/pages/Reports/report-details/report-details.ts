@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import * as firebase from 'firebase';
+import { ReportStudentsPage } from '../report-students/report-students';
 
 
 @IonicPage()
@@ -19,42 +20,38 @@ export class ReportDetailsPage {
 
   students : Array<any> = [];
   
-// public doughnutChartLabels:string[] = ['Severely Anaemic', 'Moderately Anaemic','Mildly Anaemic','Healthy'];
-// public doughnutChartData:number[] = [0,0,0,0];
-// public doughnutChartType:string = 'doughnut';
-// public doughnutLegend : boolean = true;
-
+public doughnutChartLabels:string[] = ['Severely Anaemic', 'Moderately Anaemic','Healthy','Mildly Anaemic'];
+public doughnutChartData:number[] = [0,0,0,0];
+public doughnutChartType:string = 'doughnut';
+public doughnutLegend : boolean = true;
 
   constructor(
   public navCtrl: NavController, 
   public navParams: NavParams
   ) {
-    this.getSevere();
-    this.getModerate();
-    this.getMild();
-    this.getHEalthy();
+    this.getData();
   }
 
-  getSevere(){
-    firebase.database().ref("Subs/Schools").child(this.schoolkey).child("Severity").child("Severely Anaemic").once("value",itemSnap=>{
+  getData(){
+    firebase.database().ref("Counters/Schools").child(this.schoolkey).child("Severity").child("Severely Anaemic").once("value",itemSnap=>{
       this.severe = itemSnap.numChildren();
+    }).then(()=>{
+      firebase.database().ref("Counters/Schools").child(this.schoolkey).child("Severity").child("Moderately Anaemic").once("value",itemSnap=>{
+        this.moderate = itemSnap.numChildren();
+      }).then(()=>{
+        firebase.database().ref("Counters/Schools").child(this.schoolkey).child("Severity").child("Mildly  Anaemic").once("value",itemSnap=>{
+          this.mild = itemSnap.numChildren();
+        }).then(()=>{
+          firebase.database().ref("Counters/Schools").child(this.schoolkey).child("Severity").child("Healthy").once("value",itemSnap=>{
+            this.healthy = itemSnap.numChildren();
+          }).then(()=>{
+            this.doughnutChartData = [this.severe,this.moderate,this.healthy,this.mild]
+          })  
       
+        })  
+      })  
+  
     })
-  }
-  getModerate(){
-    firebase.database().ref("Subs/Schools").child(this.schoolkey).child("Severity").child("Moderately Anaemic").once("value",itemSnap=>{
-      this.moderate = itemSnap.numChildren();
-    })  
-  }
-  getMild(){
-    firebase.database().ref("Subs/Schools").child(this.schoolkey).child("Severity").child("Mildly  Anaemic").once("value",itemSnap=>{
-      this.mild = itemSnap.numChildren();
-    })  
-  }
-  getHEalthy(){
-    firebase.database().ref("Subs/Schools").child(this.schoolkey).child("Severity").child("Healthy").once("value",itemSnap=>{
-      this.healthy = itemSnap.numChildren();
-    })  
   }
   public chartClicked(e:any):void {
     console.log(e);
@@ -63,5 +60,7 @@ export class ReportDetailsPage {
   public chartHovered(e:any):void {
     console.log(e);
   }
-
+  viewStudents(seves){
+    this.navCtrl.push(ReportStudentsPage,{seves : seves,schoolkey : this.schoolkey})
+  }
 }

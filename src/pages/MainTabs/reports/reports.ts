@@ -20,7 +20,7 @@ export class ReportsPage {
     this.getSchools();
   }
   getSchools(){
-    firebase.database().ref("Anm Assigns").child(firebase.auth().currentUser.uid).once("value",snap=>{
+    firebase.database().ref("Organisms/Anm Assigns").child(firebase.auth().currentUser.uid).once("value",snap=>{
       this.schools = [];
       snap.forEach(snip=>{
         var temp : any = snip.val();

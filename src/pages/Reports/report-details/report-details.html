@@ -5,40 +5,40 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content padding class="cardback">
 
-  <!-- <ion-card>
+  <ion-card>
     <ion-card-content>
       <ion-card-title color="primary">Schools Status</ion-card-title>
-      <div style="display: block">
-        <canvas baseChart
-                    [data]="doughnutChartData"
-                    [labels]="doughnutChartLabels"
-                    [legend]="doughnutLegend"
-                    [chartType]="doughnutChartType"
-                    (chartHover)="chartHovered($event)"
-                    (chartClick)="chartClicked($event)"></canvas>
-      </div>
     </ion-card-content>
-  </ion-card> -->
+  </ion-card>
+  <div style="display: block">
+    <canvas baseChart
+                [data]="doughnutChartData"
+                [labels]="doughnutChartLabels"
+                [legend]="doughnutLegend"
+                [chartType]="doughnutChartType"
+                (chartHover)="chartHovered($event)"
+                (chartClick)="chartClicked($event)"></canvas>
+  </div>
 
 
   <ion-card>
     <ion-card-content>
       <ion-item>
-        <h2 ion-text color="primary" item-start> Severely Anaemic </h2>
+        <h2 ion-text color="primary" item-start class="curs" (click)="viewStudents('Severely Anaemic')"  > Severely Anaemic </h2>
         <h2 item-end>{{severe}}</h2>
       </ion-item>
       <ion-item>
-        <h2 ion-text color="primary" item-start> Moderately Anaemic </h2>
+        <h2 ion-text color="primary" item-start class="curs" (click)="viewStudents('Moderately Anaemic')" > Moderately Anaemic </h2>
         <h2 item-end>{{moderate}}</h2>
       </ion-item>
       <ion-item>
-        <h2 ion-text color="primary" item-start> Mildly Anaemic </h2>
+        <h2 ion-text color="primary" item-start class="curs" (click)="viewStudents('Mildly  Anaemic')" > Mildly Anaemic </h2>
         <h2 item-end>{{mild}}</h2>
       </ion-item>
       <ion-item>
-        <h2 ion-text color="primary" item-start> Healthy </h2>
+        <h2 ion-text color="primary" item-start class="curs" (click)="viewStudents('Healthy')"> Healthy </h2>
         <h2 item-end>{{healthy}}</h2>
       </ion-item>
     </ion-card-content>
