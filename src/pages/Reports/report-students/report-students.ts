@@ -38,8 +38,6 @@ export class ReportStudentsPage {
           loading.dismiss();
         })
       })
-    }).catch(()=>{
-      loading.dismiss();
     })
   }
 

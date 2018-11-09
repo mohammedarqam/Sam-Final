@@ -85,8 +85,8 @@
         g/dl
       </ion-col>
     </ion-row>
-    <ion-item ion-text text-center *ngIf="hbl" >
-      {{sev}}
+    <ion-item ion-text text-center margin-bottom *ngIf="hbl"  [color]="sevC" >
+      <p ion-text color="whiter">{{sev}}</p>
     </ion-item>
     <ion-row>
       <ion-item>

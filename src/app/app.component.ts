@@ -7,8 +7,6 @@ import { LoginPage } from '../pages/Auths/login/login';
 import * as firebase from 'firebase';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { LoaderPage } from '../pages/Supp/loader/loader';
-import { DataEntryPage } from '../pages/ActiveJobs/data-entry/data-entry';
-import { CamsPage } from '../pages/cams/cams';
 
 @Component({
   templateUrl: 'app.html'

@@ -9,18 +9,26 @@ import { ReportDetailsPage } from '../../Reports/report-details/report-details';
   templateUrl: 'data-confirm.html',
 })
 export class DataConfirmPage {
-
-  sev = this.navParams.get("sev");
+  sev =  this.navParams.get("sev");
   hbl = this.navParams.get("hbl");
   school = this.navParams.get("school");
   FollowUp = this.navParams.get("FollowUp")
 
-
+  sevC  :string;
   constructor(
   public navCtrl: NavController, 
   public navParams: NavParams) {
-    console.log(this.sev);
-    console.log(this.hbl);
+    switch (this.sev) {
+      case 'Severely Anaemic': this.sevC = "s"
+        break;
+      case 'Moderately Anaemic': this.sevC = "mo"
+        break;
+      case 'Mildly  Anaemic': this.sevC = "mi"
+        break;
+      case 'Healthy': this.sevC = "h"
+        break;
+  }
+
   }
 
   anothrStudent(){
@@ -32,7 +40,7 @@ export class DataConfirmPage {
   }
 
   schoolReport(){
-    this.navCtrl.push(ReportDetailsPage,{school : this.school});
+    this.navCtrl.push(ReportDetailsPage,{school : this.school.School});
   }
 
 }

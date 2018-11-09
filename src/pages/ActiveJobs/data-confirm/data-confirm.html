@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-navbar color="primary" >
+  <ion-navbar color="primary">
     <ion-title>Student Analysis</ion-title>
   </ion-navbar>
 </ion-header>
@@ -10,22 +10,24 @@
 
   <ion-slides>
     <ion-slide>
+      <ion-card [color]="sevC" >
+        <ion-card-content>
+          <p class="hbl">{{hbl}}</p>
 
-      <p class="hbl">{{hbl}}</p>
+          <p>{{sev}}</p>
 
-      <p>{{sev}}</p>
+          <ion-item [color]="sevC" >
+            <p item-start >Next Follow Up</p>
+            <h3 item-end>{{FollowUp | date : 'mediumDate'}}</h3>
+          </ion-item>
 
-      <ion-item>
-        <p item-start ion-text color="primary">Next Follow Up</p>
-        <p item-end>{{FollowUp | date : 'mediumDate'}}</p>
-      </ion-item>
- 
-      <button ion-button (click)="anothrStudent()" >Add Another Student </button>
-      <button ion-button (click)="schoolReport()">View School Report</button>
-      <button ion-button (click)="done()" >Done </button>
-       
+          <button ion-button (click)="anothrStudent()">Add Another Student </button>
+          <button ion-button (click)="schoolReport()">View School Report</button>
+          <button ion-button (click)="done()">Done </button>
+        </ion-card-content>
+      </ion-card>
     </ion-slide>
   </ion-slides>
 
- 
+
 </ion-content>

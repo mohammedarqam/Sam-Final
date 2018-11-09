@@ -19,7 +19,7 @@ export class ReportDetailsPage {
   healthy : number=0;
 
   students : Array<any> = [];
-  
+  totStu : number = 0;
 public doughnutChartLabels:string[] = ['Severely Anaemic', 'Moderately Anaemic','Healthy','Mildly Anaemic'];
 public doughnutChartData:number[] = [0,0,0,0];
 public doughnutChartType:string = 'doughnut';
@@ -46,6 +46,7 @@ public doughnutLegend : boolean = true;
             this.healthy = itemSnap.numChildren();
           }).then(()=>{
             this.doughnutChartData = [this.severe,this.moderate,this.healthy,this.mild]
+            this.totStu = this.severe+this.moderate+this.healthy+this.mild;
           })  
       
         })  
