@@ -1,18 +1,28 @@
-<!--
-  Generated template for the ChangePassPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
-
-  <ion-navbar>
-    <ion-title>changePass</ion-title>
+  <ion-navbar color="primary">
+    <ion-title>Change Password</ion-title>
   </ion-navbar>
-
 </ion-header>
 
 
 <ion-content padding>
+
+  <ion-card>
+    <ion-card-content>
+      <ion-item>
+        <ion-label floating>Current Password</ion-label>  
+        <ion-input type="password" [(ngModel)]="cpass"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>New Password</ion-label>
+        <ion-input type="password" [(ngModel)]="npass"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>Re-Enter Password</ion-label>
+        <ion-input type="password" [(ngModel)]="npass2"></ion-input>
+      </ion-item>
+      <button ion-button align-center margin-top (click)="changePass()">Change Password</button>
+    </ion-card-content>
+  </ion-card>
 
 </ion-content>

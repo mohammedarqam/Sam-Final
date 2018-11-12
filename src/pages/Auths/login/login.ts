@@ -22,8 +22,12 @@ export class LoginPage {
   public loadingCtrl : LoadingController,
   public alertCtrl : AlertController,
   ) {
-  }
-
+    firebase.auth().onAuthStateChanged((user)=>{
+      if(user){
+        this.navCtrl.setRoot(TabsPage);
+      }
+    })
+}
   checkData(){
   if(this.phone.length){
     if(this.pass){

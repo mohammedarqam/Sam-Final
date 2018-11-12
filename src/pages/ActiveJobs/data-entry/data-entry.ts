@@ -27,11 +27,11 @@ export class DataEntryPage {
   aadhar: string;
   address: string;
   cmmu: string;
-  followUpDays : string;
+  followUpDays: string;
 
   age: number;
   sev: string;
-  sevC  :string;
+  sevC: string;
   constructor(
     public navCtrl: NavController,
     public toastCtrl: ToastController,
@@ -40,9 +40,6 @@ export class DataEntryPage {
     public navParams: NavParams
   ) {
     console.log(this.skl);
-  }
-  ionViewDidEnter() {
-    this.clear();
   }
 
   takePicture() {
@@ -147,11 +144,11 @@ export class DataEntryPage {
       Age: this.age,
       Severity: this.sev,
       EntryDate: moment().format(),
-      FollowUpDate  :moment().add(this.followUpDays,'day').format(),
-      Mandal : this.skl.Mandal,
-      Village : this.skl.Village,
-      Schools : this.skl.School,
-      ANM : firebase.auth().currentUser.uid,
+      FollowUpDate: moment().add(this.followUpDays, 'day').format(),
+      Mandal: this.skl.Mandal,
+      Village: this.skl.Village,
+      Schools: this.skl.School,
+      ANM: firebase.auth().currentUser.uid,
     }).then((res) => {
       firebase.database().ref("SubsIndex/Schools").child(this.skl.School).child("Students").child(res.key).set(true).then(() => {
         firebase.database().ref("Counters/Schools").child(this.skl.School).child("Severity").child(this.sev).child(res.key).set(true).then(() => {
@@ -160,9 +157,13 @@ export class DataEntryPage {
               firebase.database().ref("Counters/Schools").child(this.skl.School).child("Community").child(this.cmmu).child(res.key).set(true).then(() => {
                 firebase.database().ref("Counters/Mandals").child(this.skl.Mandal).child("Community").child(this.cmmu).child(res.key).set(true).then(() => {
                   firebase.database().ref("Counters/Villages").child(this.skl.Village).child("Community").child(this.cmmu).child(res.key).set(true).then(() => {
-                    loading.dismiss();
-                    this.navCtrl.setRoot(DataConfirmPage, { hbl: this.hbl, sev: this.sev, school: this.skl,FollowUp : moment().add(this.followUpDays,'day').format() });
+                    firebase.database().ref("Counters/District").child("Severity").child(this.sev).child(res.key).set(true).then(() => {
+                      firebase.database().ref("Counters/District").child("Community").child(this.cmmu).child(res.key).set(true).then(() => {
+                        loading.dismiss();
+                        this.navCtrl.push(DataConfirmPage, { hbl: this.hbl, sev: this.sev, school: this.skl, FollowUp: moment().add(this.followUpDays, 'day').format() });
 
+                      })
+                    })
                   })
                 })
               })
@@ -176,9 +177,9 @@ export class DataEntryPage {
 
 
 
-  gtFollowup(){
+  gtFollowup() {
     console.log(moment().format('D/MMM/YYYY'))
-    console.log(moment().add(45,'day').format('D/MMM/YYYY'))
+    console.log(moment().add(45, 'day').format('D/MMM/YYYY'))
   }
 
 
