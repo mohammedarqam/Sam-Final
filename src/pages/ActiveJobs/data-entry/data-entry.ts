@@ -32,6 +32,14 @@ export class DataEntryPage {
   age: number;
   sev: string;
   sevC: string;
+
+  load = this.loadingCtrl.create({
+    content: 'Please wait...'
+  });
+
+
+  public fUpDate: string;
+
   constructor(
     public navCtrl: NavController,
     public toastCtrl: ToastController,
@@ -123,12 +131,27 @@ export class DataEntryPage {
 
   }
 
-  enterData() {
-    let loading = this.loadingCtrl.create({
-      content: 'Please wait...'
-    });
+  getSchool() {
+    firebase.database().ref("Subs/Schools").child(this.skl.School).once("value", items => {
+      let pDate = items.val().FollowUpDate;
+      let sDate = moment().add(this.followUpDays, 'day').format();
+      let des = moment(sDate).isBefore(moment(pDate));
+      if (des) {
+        firebase.database().ref("Subs/Schools").child(this.skl.School).child("FollowUpDate").set(sDate).then(() => {
+          this.load.dismiss();
+          this.navCtrl.push(DataConfirmPage, { hbl: this.hbl, sev: this.sev, school: this.skl, FollowUp: moment().add(this.followUpDays, 'day').format() });
 
-    loading.present();
+        });
+      } else {
+        this.load.dismiss();
+        this.navCtrl.push(DataConfirmPage, { hbl: this.hbl, sev: this.sev, school: this.skl, FollowUp: moment().add(this.followUpDays, 'day').format() });
+
+      }
+    })
+  }
+  enterData() {
+    
+    this.load.present();
     firebase.database().ref("Organisms/Students").push({
       StudentName: this.sname,
       ParentName: this.pname,
@@ -159,8 +182,6 @@ export class DataEntryPage {
                   firebase.database().ref("Counters/Villages").child(this.skl.Village).child("Community").child(this.cmmu).child(res.key).set(true).then(() => {
                     firebase.database().ref("Counters/District").child("Severity").child(this.sev).child(res.key).set(true).then(() => {
                       firebase.database().ref("Counters/District").child("Community").child(this.cmmu).child(res.key).set(true).then(() => {
-                        loading.dismiss();
-                        this.navCtrl.push(DataConfirmPage, { hbl: this.hbl, sev: this.sev, school: this.skl, FollowUp: moment().add(this.followUpDays, 'day').format() });
 
                       })
                     })
@@ -175,6 +196,9 @@ export class DataEntryPage {
   }
 
 
+  // this.students.sort(function (d1, d2) {
+  //   return moment(d1).isBefore(moment(d2));
+  // });
 
 
   gtFollowup() {

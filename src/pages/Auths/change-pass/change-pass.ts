@@ -9,26 +9,25 @@ import * as firebase from 'firebase';
 export class ChangePassPage {
 
   cpass: string;
-  npass : string;
-  npass2 : string;
-  oPass : string;
+  npass: string;
+  npass2: string;
+  oPass: string;
 
   constructor(
-  public navCtrl: NavController, 
-  public toastCtrl : ToastController,
-  public navParams: NavParams
+    public navCtrl: NavController,
+    public toastCtrl: ToastController,
+    public navParams: NavParams
   ) {
   }
 
-  getUser(){
-    firebase.database().ref("Anms").child(firebase.auth().currentUser.uid).once("value",snap=>{
+  getUser() {
+    firebase.database().ref("Anms").child(firebase.auth().currentUser.uid).once("value", snap => {
       this.oPass = snap.val().Password;
       console.log(this.oPass);
     })
   }
 
-  checkData(){
-    
+  checkData() {
   }
 
 
@@ -36,13 +35,17 @@ export class ChangePassPage {
 
 
 
-  changePass(){
-      firebase.auth().currentUser.updatePassword(this.npass).then(()=>{
-        firebase.database().ref("Anms").child(firebase.auth().currentUser.uid).child("Password").set(this.npass).then(()=>{
-          this.presentToast("Password Changed");
-        })
+  changePass() {
+    firebase.auth().currentUser.updatePassword(this.npass).then(() => {
+      firebase.database().ref("Organisms/Anms").child(firebase.auth().currentUser.uid).child("Password").set(this.npass).then(() => {
+        this.presentToast("Password Changed");
       })
-    }
+    }).then(() => {
+      this.cpass = null;
+      this.npass = null;
+      this.npass2 = null;
+    })
+  }
 
 
 
@@ -52,7 +55,7 @@ export class ChangePassPage {
   presentToast(msg) {
     let toast = this.toastCtrl.create({
       message: msg,
-      position : "top",
+      position: "top",
       duration: 4000,
       showCloseButton: false,
     });

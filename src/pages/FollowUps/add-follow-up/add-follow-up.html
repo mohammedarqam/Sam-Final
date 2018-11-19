@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-navbar color="primary" >
+    <ion-title>{{student.StudentName}}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding class="cardback" >
+
+  <ion-card>
+    <ion-card-content>
+      <ion-item>
+        <ion-label floating>HBL Level</ion-label>
+        <ion-input type="number" [(ngModel)]="hbl" (ionChange)="getSev()" ></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>Weight</ion-label>
+        <ion-input type="number" [(ngModel)]="weight"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>Height</ion-label>
+        <ion-input type="number" [(ngModel)]="height"></ion-input>
+      </ion-item>
+      <ion-item ion-text text-center margin-bottom *ngIf="hbl"  [color]="sevC" >
+        <p ion-text color="whiter">{{sev}}</p>
+      </ion-item>
+
+      <button ion-button margin-top float-right (click)="checkData()">Submit</button>
+
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>

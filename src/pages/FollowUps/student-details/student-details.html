@@ -5,7 +5,11 @@
 </ion-header>
 
 
+
+
+
 <ion-content class="cardback">
+  <button ion-button float-right (click)="addUpdate(s)">Add Update</button>
   <ion-card>
     <ion-card-content>
 
@@ -71,4 +75,14 @@
 
     </ion-card-content>
   </ion-card>
+
+  <ion-card>
+    <ion-card-content>
+      <ion-item>
+        <p ion-text item-start color="primary">Next Follow Up</p>
+        <p item-end>{{days}}</p>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+
 </ion-content>

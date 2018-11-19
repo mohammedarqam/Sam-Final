@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import * as firebase from 'firebase';
 import { ReportDetailsPage } from '../../Reports/report-details/report-details';
 
@@ -15,11 +15,21 @@ export class ReportsPage {
 
   constructor(
   public navCtrl: NavController, 
+  public loadingCtrl : LoadingController,
   public navParams: NavParams
   ) {
     this.getSchools();
   }
+
+  ionViewDidEnter(){
+    this.getSchools();
+  }
+
   getSchools(){
+    let loading = this.loadingCtrl.create({
+      content: 'Please wait...'
+    });
+
     firebase.database().ref("Organisms/Anm Assigns").child(firebase.auth().currentUser.uid).once("value",snap=>{
       this.schools = [];
       snap.forEach(snip=>{
@@ -28,6 +38,8 @@ export class ReportsPage {
         console.log(temp)
         this.schools.push(temp);
       })
+    }).then(()=>{
+      loading.dismiss();
     })      
   }
 

@@ -36,12 +36,23 @@ export class ProfilePage {
     this.getUser();
   }
 
+  ionViewDidEnter(){
+    this.getUser();
+
+  }
+
     getUser(){
+      let loading = this.loadingCtrl.create({
+        content: 'Please wait...'
+      });
+  
       firebase.database().ref("Organisms/Anms").child(firebase.auth().currentUser.uid).once("value",snap=>{
         this.name = snap.val().Name;
         this.email = snap.val().Email;
         this.gender = snap.val().Gender;
         console.log(snap.val())
+      }).then(()=>{
+        loading.dismiss();
       })
     }
 

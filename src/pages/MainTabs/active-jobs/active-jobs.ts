@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import * as firebase from 'firebase';
 import { DataEntryPage } from '../../ActiveJobs/data-entry/data-entry';
 
@@ -15,19 +15,32 @@ export class ActiveJobsPage {
 
   constructor(
   public navCtrl: NavController, 
+  public loadingCtrl : LoadingController,
   public navParams: NavParams
   ) {
     this.getSchools();
   }
+
+  ionViewDidEnter(){
+    this.getSchools();
+  }
+
   getSchools(){
+
+    let loading = this.loadingCtrl.create({
+      content: 'Please wait...'
+    });
+  
+    loading.present();
     firebase.database().ref("Organisms/Anm Assigns").child(firebase.auth().currentUser.uid).once("value",snap=>{
       this.schools = [];
       snap.forEach(snip=>{
         var temp : any = snip.val();
         temp.key = snip.key;
-        console.log(temp)
         this.schools.push(temp);
       })
+    }).then(()=>{
+      loading.dismiss();
     })      
   }
 

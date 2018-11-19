@@ -25,6 +25,8 @@ import { FollowUpStudentsPage } from '../pages/FollowUps/follow-up-students/foll
 import { StudentDetailsPage } from '../pages/FollowUps/student-details/student-details';
 import { ChartsModule } from 'ng2-charts';
 import { ReportStudentsPage } from '../pages/Reports/report-students/report-students';
+import { AddFollowUpPageModule } from '../pages/FollowUps/add-follow-up/add-follow-up.module';
+import { AddFollowUpPage } from '../pages/FollowUps/add-follow-up/add-follow-up';
 
 
 export const firebaseCred = {
@@ -56,6 +58,7 @@ firebase.initializeApp(firebaseCred);
     FollowUpStudentsPage,
     StudentDetailsPage,
     ReportStudentsPage,
+    AddFollowUpPage,
   ],
   imports: [
     BrowserModule,
@@ -85,6 +88,7 @@ firebase.initializeApp(firebaseCred);
     FollowUpStudentsPage,
     StudentDetailsPage,
     ReportStudentsPage,
+    AddFollowUpPage,
   ],
   providers: [
     StatusBar,

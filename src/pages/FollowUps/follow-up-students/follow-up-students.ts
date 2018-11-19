@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { StudentDetailsPage } from '../student-details/student-details';
 import moment from 'moment';
+import { AddFollowUpPage } from '../add-follow-up/add-follow-up';
 
 @IonicPage()
 @Component({
@@ -13,24 +14,24 @@ export class FollowUpStudentsPage {
 
   schoolKey = this.navParams.get("schoolKey");
 
-  students : Array<any> = [];
-  
+  students: Array<any> = [];
+
   constructor(
-  public navCtrl: NavController, 
-  public db : AngularFireDatabase,
-  public navParams: NavParams
+    public navCtrl: NavController,
+    public db: AngularFireDatabase,
+    public navParams: NavParams
   ) {
     this.getStudents();
   }
 
-  getStudents(){
-    this.db.list(`SubsIndex/Schools/${this.schoolKey}/Students`).snapshotChanges().subscribe(itemSnap=>{
-      itemSnap.forEach(snap=>{
-        this.db.object(`Organisms/Students/${snap.key}`).snapshotChanges().subscribe(iSnap=>{
-          var temp  :any = iSnap.payload.val();
+  getStudents() {
+    this.db.list(`SubsIndex/Schools/${this.schoolKey}/Students`).snapshotChanges().subscribe(itemSnap => {
+      itemSnap.forEach(snap => {
+        this.db.object(`Organisms/Students/${snap.key}`).snapshotChanges().subscribe(iSnap => {
+          var temp: any = iSnap.payload.val();
 
-          // temp.EntryDate= moment(temp.EntryDate);
-          
+          temp.days = moment(temp.FollowUpDate, "YYYY-MM-DD").fromNow()
+
 
           temp.key = iSnap.key;
           console.log(temp)
@@ -39,8 +40,12 @@ export class FollowUpStudentsPage {
       })
     })
   }
-  
-  details(s){
-    this.navCtrl.push(StudentDetailsPage,{student :s })
+
+  details(s) {
+    this.navCtrl.push(StudentDetailsPage, { student: s })
+  }
+
+  addUpdate(s) {
+    this.navCtrl.push(AddFollowUpPage, { student: s });
   }
 }

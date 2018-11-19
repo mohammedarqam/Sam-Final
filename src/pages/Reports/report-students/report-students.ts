@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import * as firebase from 'firebase';
 import { StudentDetailsPage } from '../../FollowUps/student-details/student-details';
-
+import moment from 'moment';
 
 @IonicPage()
 @Component({
@@ -19,6 +19,7 @@ export class ReportStudentsPage {
   public loadingCtrl : LoadingController,
   public navParams: NavParams
   ) {
+    this.getStudents();
   }
   ionViewDidEnter(){
     this.getStudents();
@@ -33,11 +34,12 @@ export class ReportStudentsPage {
         firebase.database().ref("Organisms/Students").child(snippi.key).once("value",itemSnapshot=>{
           var temp : any = itemSnapshot.val();
           temp.key = itemSnapshot.key;
+          temp.days = moment(temp.FollowUpDate, "YYYY-MM-DD").fromNow();
           this.students.push(temp);
-        }).then(()=>{
-          loading.dismiss();
         })
       })
+    }).then(()=>{
+      loading.dismiss();
     })
   }
 
