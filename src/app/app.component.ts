@@ -6,12 +6,13 @@ import { TabsPage } from '../pages/Supp/tabs/tabs';
 import { LoginPage } from '../pages/Auths/login/login';
 import * as firebase from 'firebase';
 import { AngularFireDatabase } from 'angularfire2/database';
+import { PDetectPage } from '../pages/p-detect/p-detect';
 
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage:any = LoginPage;
+  rootPage:any ;
 
   constructor(
   public platform: Platform, 
@@ -24,7 +25,12 @@ export class MyApp {
 
   initializeApp() {
     this.platform.ready().then(() => {
-      
+      if (this.platform.is('tablet')) {
+        this.rootPage = LoginPage;
+      }else{
+        this.rootPage = PDetectPage;
+      }
+  
 
       this.statusBar.styleDefault();
       this.splashScreen.hide();

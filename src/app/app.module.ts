@@ -26,6 +26,7 @@ import { ChartsModule } from 'ng2-charts';
 import { ReportStudentsPage } from '../pages/Reports/report-students/report-students';
 import { AddFollowUpPageModule } from '../pages/FollowUps/add-follow-up/add-follow-up.module';
 import { AddFollowUpPage } from '../pages/FollowUps/add-follow-up/add-follow-up';
+import { PDetectPage } from '../pages/p-detect/p-detect';
 
 
 export const firebaseCred = {
@@ -57,6 +58,7 @@ firebase.initializeApp(firebaseCred);
     StudentDetailsPage,
     ReportStudentsPage,
     AddFollowUpPage,
+    PDetectPage,
   ],
   imports: [
     BrowserModule,
@@ -86,6 +88,7 @@ firebase.initializeApp(firebaseCred);
     StudentDetailsPage,
     ReportStudentsPage,
     AddFollowUpPage,
+    PDetectPage,
   ],
   providers: [
     StatusBar,
