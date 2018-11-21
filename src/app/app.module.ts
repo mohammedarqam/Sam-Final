@@ -20,7 +20,6 @@ import { Camera } from '@ionic-native/camera';
 import { DataConfirmPage } from '../pages/ActiveJobs/data-confirm/data-confirm';
 import { ReportDetailsPage } from '../pages/Reports/report-details/report-details';
 import { ChangePassPage } from '../pages/Auths/change-pass/change-pass';
-import { CamsPage } from '../pages/cams/cams';
 import { FollowUpStudentsPage } from '../pages/FollowUps/follow-up-students/follow-up-students';
 import { StudentDetailsPage } from '../pages/FollowUps/student-details/student-details';
 import { ChartsModule } from 'ng2-charts';
@@ -54,7 +53,6 @@ firebase.initializeApp(firebaseCred);
     DataConfirmPage,
     ReportDetailsPage,
     ChangePassPage,
-    CamsPage,
     FollowUpStudentsPage,
     StudentDetailsPage,
     ReportStudentsPage,
@@ -84,7 +82,6 @@ firebase.initializeApp(firebaseCred);
     DataConfirmPage,
     ReportDetailsPage,
     ChangePassPage,
-    CamsPage,
     FollowUpStudentsPage,
     StudentDetailsPage,
     ReportStudentsPage,

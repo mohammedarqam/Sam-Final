@@ -15,7 +15,9 @@ export class DataEntryPage {
 
   skl = this.navParams.get("school");
   public base64Image: string;
+  public upImage: string;
 
+  
   sname: string;
   pname: string;
   mobile: string;
@@ -32,6 +34,7 @@ export class DataEntryPage {
   age: number;
   sev: string;
   sevC: string;
+  url: any;
 
   load = this.loadingCtrl.create({
     content: 'Please wait...'
@@ -43,7 +46,7 @@ export class DataEntryPage {
   constructor(
     public navCtrl: NavController,
     public toastCtrl: ToastController,
-    private camera: Camera,
+    public cam : Camera,
     public loadingCtrl: LoadingController,
     public navParams: NavParams
   ) {
@@ -51,16 +54,19 @@ export class DataEntryPage {
   }
 
   takePicture() {
-    this.camera.getPicture({
-      destinationType: this.camera.DestinationType.DATA_URL,
+    this.cam.getPicture({
+      destinationType: this.cam.DestinationType.DATA_URL,
       targetWidth: 1000,
       targetHeight: 1000
-    }).then((imageData) => {
+  }).then((imageData) => {
+    // imageData is a base64 encoded string
       this.base64Image = "data:image/jpeg;base64," + imageData;
+      this.upImage = imageData;
+
     }, (err) => {
       console.log(err);
-    });
-  }
+  });
+}
 
   checkData() {
     if (this.sname) {
@@ -152,6 +158,16 @@ export class DataEntryPage {
   enterData() {
     
     this.load.present();
+
+    firebase.storage().ref("Students/" + this.sname).putString(this.upImage, 'base64').catch((e)=>{
+    }).then(()=>{
+      firebase.storage().ref("Students/" + this.sname).getDownloadURL().then((dURL)=>{
+        this.url = dURL;
+      }).then(()=>{
+
+
+
+
     firebase.database().ref("Organisms/Students").push({
       StudentName: this.sname,
       ParentName: this.pname,
@@ -172,6 +188,7 @@ export class DataEntryPage {
       Village: this.skl.Village,
       Schools: this.skl.School,
       ANM: firebase.auth().currentUser.uid,
+      Image : this.url,
     }).then((res) => {
       firebase.database().ref("SubsIndex/Schools").child(this.skl.School).child("Students").child(res.key).set(true).then(() => {
         firebase.database().ref("Counters/Schools").child(this.skl.School).child("Severity").child(this.sev).child(res.key).set(true).then(() => {
@@ -192,19 +209,18 @@ export class DataEntryPage {
           })
         })
       });
-    })
+    });
+
+
+
+  });
+});
+
   }
 
 
-  // this.students.sort(function (d1, d2) {
-  //   return moment(d1).isBefore(moment(d2));
-  // });
 
 
-  gtFollowup() {
-    console.log(moment().format('D/MMM/YYYY'))
-    console.log(moment().add(45, 'day').format('D/MMM/YYYY'))
-  }
 
 
 

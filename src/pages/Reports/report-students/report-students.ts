@@ -22,7 +22,7 @@ export class ReportStudentsPage {
     this.getStudents();
   }
   ionViewDidEnter(){
-    this.getStudents();
+    // this.getStudents();
   }
   getStudents(){
     let loading = this.loadingCtrl.create({
