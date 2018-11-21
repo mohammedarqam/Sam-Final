@@ -25,7 +25,7 @@ export class MyApp {
 
   initializeApp() {
     this.platform.ready().then(() => {
-      if (this.platform.is('tablet')) {
+      if (!this.platform.is('tablet')) {
         this.rootPage = LoginPage;
       }else{
         this.rootPage = PDetectPage;
