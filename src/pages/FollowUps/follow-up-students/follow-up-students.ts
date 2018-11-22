@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AngularFireDatabase } from 'angularfire2/database';
-import { StudentDetailsPage } from '../student-details/student-details';
+
 import moment from 'moment';
-import { AddFollowUpPage } from '../add-follow-up/add-follow-up';
 
 @IonicPage()
 @Component({
@@ -42,10 +41,10 @@ export class FollowUpStudentsPage {
   }
 
   details(s) {
-    this.navCtrl.push(StudentDetailsPage, { student: s })
+    this.navCtrl.push("StudentDetailsPage", { student: s })
   }
 
   addUpdate(s) {
-    this.navCtrl.push(AddFollowUpPage, { student: s });
+    this.navCtrl.push("AddFollowUpPage", { student: s });
   }
 }

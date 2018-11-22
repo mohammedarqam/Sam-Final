@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import * as firebase from 'firebase';
-import { StudentDetailsPage } from '../../FollowUps/student-details/student-details';
 import moment from 'moment';
 
 @IonicPage()
@@ -44,7 +43,7 @@ export class ReportStudentsPage {
   }
 
   details(s){
-    this.navCtrl.push(StudentDetailsPage,{student :s })
+    this.navCtrl.push("StudentDetailsPage",{student :s })
   }
 
 }

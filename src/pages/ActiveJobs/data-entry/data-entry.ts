@@ -3,7 +3,6 @@ import { IonicPage, NavController, NavParams, ToastController, LoadingController
 import * as firebase from 'firebase';
 import moment from 'moment';
 import { Camera, CameraOptions } from '@ionic-native/camera';
-import { DataConfirmPage } from '../data-confirm/data-confirm';
 
 
 @IonicPage()
@@ -145,12 +144,12 @@ export class DataEntryPage {
       if (des) {
         firebase.database().ref("Subs/Schools").child(this.skl.School).child("FollowUpDate").set(sDate).then(() => {
           this.load.dismiss();
-          this.navCtrl.push(DataConfirmPage, { hbl: this.hbl, sev: this.sev, school: this.skl, FollowUp: moment().add(this.followUpDays, 'day').format() });
+          this.navCtrl.push("DataConfirmPage", { hbl: this.hbl, sev: this.sev, school: this.skl, FollowUp: moment().add(this.followUpDays, 'day').format() });
 
         });
       } else {
         this.load.dismiss();
-        this.navCtrl.push(DataConfirmPage, { hbl: this.hbl, sev: this.sev, school: this.skl, FollowUp: moment().add(this.followUpDays, 'day').format() });
+        this.navCtrl.push("DataConfirmPage", { hbl: this.hbl, sev: this.sev, school: this.skl, FollowUp: moment().add(this.followUpDays, 'day').format() });
 
       }
     })

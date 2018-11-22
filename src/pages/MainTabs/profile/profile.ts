@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController, LoadingController } from 'ionic-angular';
 import * as firebase from 'firebase';
-import { ChangePassPage } from '../../Auths/change-pass/change-pass';
-import { LoginPage } from '../../Auths/login/login';
 
 @IonicPage()
 @Component({
@@ -29,7 +27,7 @@ export class ProfilePage {
   ) {
     firebase.auth().onAuthStateChanged((user)=>{
       if(!user){
-        this.navCtrl.setRoot(LoginPage);
+        this.navCtrl.setRoot("LoginPage");
       }
     })
 
@@ -83,9 +81,9 @@ signOutConfirm(){
     firebase.auth().signOut().then(()=>{
       this.loading.dismiss();
     }).then(()=>{
-      this.navCtrl.setRoot(LoginPage);
+      this.navCtrl.setRoot("LoginPage");
     });
   }
 
-  gtChangePass(){this.navCtrl.push(ChangePassPage)}
+  gtChangePass(){this.navCtrl.push("ChangePassPage")}
 }

@@ -1,7 +1,6 @@
 import { Component,ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams, ToastController, AlertController, Tabs, LoadingController } from 'ionic-angular';
 import firebase from 'firebase';
-import { TabsPage } from '../../Supp/tabs/tabs';
 
 
 @IonicPage()
@@ -24,7 +23,7 @@ export class LoginPage {
   ) {
     firebase.auth().onAuthStateChanged((user)=>{
       if(user){
-        this.navCtrl.setRoot(TabsPage);
+        this.navCtrl.setRoot("TabsPage");
       }
     })
 }
@@ -49,7 +48,7 @@ login(){
 
   loading.present();
   firebase.auth().signInWithEmailAndPassword(malGen,this.pass).then(()=>{
-    this.navCtrl.setRoot(TabsPage)
+    this.navCtrl.setRoot("TabsPage")
     loading.dismiss()
   }).catch((er)=>{
     loading.dismiss();

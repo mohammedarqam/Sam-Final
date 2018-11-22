@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import * as firebase from 'firebase';
-import { ReportDetailsPage } from '../../Reports/report-details/report-details';
 
 @IonicPage()
 @Component({
@@ -44,7 +43,7 @@ export class ReportsPage {
   }
 
   addData(s){
-    this.navCtrl.push(ReportDetailsPage,{school : s.School})
+    this.navCtrl.push("ReportDetailsPage",{school : s.School})
   }
 
 }

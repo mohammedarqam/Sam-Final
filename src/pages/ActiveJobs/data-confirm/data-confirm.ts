@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, Tabs } from 'ionic-angular';
-import { TabsPage } from '../../Supp/tabs/tabs';
-import { ReportDetailsPage } from '../../Reports/report-details/report-details';
+
 
 @IonicPage()
 @Component({
@@ -36,11 +35,11 @@ export class DataConfirmPage {
   }
 
   done(){
-    this.navCtrl.setRoot(TabsPage);
+    this.navCtrl.setRoot("TabsPage");
   }
 
   schoolReport(){
-    this.navCtrl.push(ReportDetailsPage,{school : this.school.School});
+    this.navCtrl.push("ReportDetailsPage",{school : this.school.School});
   }
 
 }

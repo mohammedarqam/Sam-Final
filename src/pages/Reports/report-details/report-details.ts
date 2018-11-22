@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import * as firebase from 'firebase';
-import { ReportStudentsPage } from '../report-students/report-students';
+
 
 
 @IonicPage()
@@ -62,6 +62,6 @@ public doughnutLegend : boolean = true;
     console.log(e);
   }
   viewStudents(seves){
-    this.navCtrl.push(ReportStudentsPage,{seves : seves,schoolkey : this.schoolkey})
+    this.navCtrl.push("ReportStudentsPage",{seves : seves,schoolkey : this.schoolkey})
   }
 }

@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import moment from 'moment';
-import { AddFollowUpPage } from '../add-follow-up/add-follow-up';
 import { AngularFireDatabase } from 'angularfire2/database';
 
 @IonicPage()
@@ -25,7 +24,7 @@ export class StudentDetailsPage {
 
 
   addUpdate(){
-    this.navCtrl.push(AddFollowUpPage,{student : this.student});
+    this.navCtrl.push("AddFollowUpPage",{student : this.student});
   }
 
 }

@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import * as firebase from 'firebase';
-import { DataEntryPage } from '../../ActiveJobs/data-entry/data-entry';
 
 
 @IonicPage()
@@ -45,7 +44,7 @@ export class ActiveJobsPage {
   }
 
   addData(s){
-    this.navCtrl.push(DataEntryPage,{school : s})
+    this.navCtrl.push("DataEntryPage",{school : s})
   }
 
 
