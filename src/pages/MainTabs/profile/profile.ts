@@ -86,4 +86,52 @@ signOutConfirm(){
   }
 
   gtChangePass(){this.navCtrl.push("ChangePassPage")}
+
+
+
+
+
+
+  lang : string = "English";
+
+
+  LangLabel : string = "Language";
+  pagetitle : string = "Profile";
+  changePassBtn : string = "Change Password";
+  signoutBtn : string = "Sign Out";
+  nameL : string = "Name";
+  emailL : string = "Email";
+  genderL : string = "Gender";
+
+  changeLabels() {
+
+    switch (this.lang) {
+      case "English":
+        this.LangLabel = "Language";
+        this.pagetitle = "Enter Data";
+        this.changePassBtn = "Change Password"
+        this.signoutBtn = "Sign Out";
+        this.nameL = "Name";
+        this.emailL = "Email";
+        this.genderL = "Gender";
+        break;
+      case "Telugu":
+        this.LangLabel = "భాషా";
+        this.pagetitle = "ప్రొఫైల్";
+        this.changePassBtn = "పాస్వర్డ్ మార్చండి";
+        this.signoutBtn = "సైన్ అవుట్";
+        this.nameL = "పేరు";
+        this.emailL = "ఇమెయిల్";
+        this.genderL = "జెండర్";
+        break;
+    }
+  }
+
+
+
+
+
+
+
 }
+

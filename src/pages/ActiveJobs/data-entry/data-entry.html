@@ -1,31 +1,38 @@
 <ion-header>
   <ion-navbar color="primary">
-    <ion-title>Enter Data</ion-title>
+    <ion-title>{{pagetitle}}</ion-title>
   </ion-navbar>
+  <ion-item>
+      <ion-label>{{LangLabel}}</ion-label>
+      <ion-select [(ngModel)]="lang" (ionChange)="changeLabels()" >
+        <ion-option value="English">English</ion-option>
+        <ion-option value="Telugu">తెలుగు</ion-option>
+      </ion-select>
+    </ion-item>
 </ion-header>
 
 
 <ion-content class="cardback" padding >
-  <!-- <h1>{{skl.SchoolName}} </h1> -->
+  <h1>{{skl.SchoolName}} </h1>
 
 
   <ion-grid>
     
     <ion-row>
       <ion-item>
-        <ion-input type="text" placeholder="Student Name" [(ngModel)]="sname"></ion-input>
+        <ion-input type="text" [placeholder]="nameL" [(ngModel)]="sname"></ion-input>
       </ion-item>
     </ion-row>
 
     <ion-row>
       <ion-item>
-        <ion-input type="text" placeholder="Parent Name" [(ngModel)]="pname"></ion-input>
+        <ion-input type="text" [placeholder]="pnameL" [(ngModel)]="pname"></ion-input>
       </ion-item>
     </ion-row>
 
     <ion-row>
       <ion-item>
-        <ion-input type="number" placeholder="Mobile"  [(ngModel)]="mobile"  ></ion-input>
+        <ion-input type="number" [placeholder]="mobileL"  [(ngModel)]="mobile"  ></ion-input>
       </ion-item>
     </ion-row>
 
@@ -33,7 +40,7 @@
     <ion-row>
       <ion-col col-8>
       <ion-item>
-        <ion-label >Date of Birth </ion-label>
+        <ion-label >{{dobL}} </ion-label>
         <ion-datetime displayFormat="DD/MMM/YYYY" (ionChange)="calcAge()" [(ngModel)]="dob"></ion-datetime>
       </ion-item>
       </ion-col>
@@ -48,7 +55,7 @@
 
     <ion-row>
       <ion-item>
-        <ion-label >Class </ion-label>
+        <ion-label >{{classL}} </ion-label>
         <ion-select [(ngModel)]="class">
           <ion-option value="7">7th</ion-option>
           <ion-option value="8">8th</ion-option>
@@ -62,20 +69,20 @@
 
     <ion-row>
       <ion-item>
-        <ion-input type="number" [(ngModel)]="height" placeholder="Height in Inches" ></ion-input>
+        <ion-input type="number" [(ngModel)]="height" [placeholder]="heightL" ></ion-input>
       </ion-item>
     </ion-row>
 
     <ion-row>
       <ion-item>
-        <ion-input type="number" [(ngModel)]="weight" placeholder="Weight in Kgs" ></ion-input>
+        <ion-input type="number" [(ngModel)]="weight" [placeholder]="weightL" ></ion-input>
       </ion-item>
     </ion-row>
 
     <ion-row>
       <ion-col col-10>
       <ion-item>
-        <ion-input type="number" [(ngModel)]="hbl" (ionChange)="getSev()" placeholder="HB Level"></ion-input>
+        <ion-input type="number" [(ngModel)]="hbl" (ionChange)="getSev()" [placeholder]="hblL"></ion-input>
       </ion-item>
       </ion-col>
       <ion-col col-2 >
@@ -87,19 +94,19 @@
     </ion-item>
     <ion-row>
       <ion-item>
-        <ion-input type="number" [(ngModel)]="aadhar" placeholder="Aadhar Number"></ion-input>
+        <ion-input type="number" [(ngModel)]="aadhar" [placeholder]="aadharL"></ion-input>
       </ion-item>
     </ion-row>
 
     <ion-row>
       <ion-item>
-        <ion-textarea  [(ngModel)]="address" placeholder="Residential Address" ></ion-textarea>
+        <ion-textarea  [(ngModel)]="address" [placeholder]="addressL" ></ion-textarea>
       </ion-item>
     </ion-row>
 
     <ion-row>
       <ion-item>
-        <ion-label >Community</ion-label> 
+        <ion-label >{{cmmuL}}</ion-label> 
         <ion-select [(ngModel)]="cmmu" >
           <ion-option value="SC">SC</ion-option>
           <ion-option value="ST">ST</ion-option>
@@ -110,7 +117,7 @@
       </ion-item>
     </ion-row>
 
-    <button ion-button *ngIf="!base64Image" (click)="takePicture()">Take Picture</button>
+    <button ion-button *ngIf="!base64Image" (click)="takePicture()">{{picBtn}}</button>
 
 
 

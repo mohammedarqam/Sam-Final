@@ -5,14 +5,14 @@
 </ion-header>
 
 
-<ion-content  class="cardback" padding >
+<ion-content class="cardback" padding>
 
-  <ion-grid >  
-    <ion-row *ngFor="let s of schools" class="rowCls" >
+  <ion-grid>
+    <ion-row *ngFor="let s of schools" class="rowCls">
       <ion-col col-8>
-        <p  ion-text padding-left color="primary">{{s.SchoolName}}</p>
+        <p ion-text padding-left color="primary">{{s.SchoolName}}</p>
       </ion-col>
-      <ion-col  col-4 (click)="addData(s)" padding-top  class="btnClas" >
+      <ion-col col-4 (click)="addData(s)" padding-top class="btnClas">
         Add Data
       </ion-col>
     </ion-row>

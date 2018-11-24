@@ -17,7 +17,8 @@ export class DataEntryPage {
   public base64Image: string;
   public upImage: string;
 
-  
+  lang: string = "English";
+
   sname: string;
   pname: string;
   mobile: string;
@@ -36,6 +37,10 @@ export class DataEntryPage {
   sevC: string;
   url: any;
 
+
+
+
+
   load = this.loadingCtrl.create({
     content: 'Please wait...'
   });
@@ -46,12 +51,11 @@ export class DataEntryPage {
   constructor(
     public navCtrl: NavController,
     public toastCtrl: ToastController,
-    public cam : Camera,
+    public cam: Camera,
     private http: HttpClient,
     public loadingCtrl: LoadingController,
     public navParams: NavParams
   ) {
-    console.log(this.skl);
   }
 
   takePicture() {
@@ -59,15 +63,15 @@ export class DataEntryPage {
       destinationType: this.cam.DestinationType.DATA_URL,
       targetWidth: 1000,
       targetHeight: 1000
-  }).then((imageData) => {
-    // imageData is a base64 encoded string
+    }).then((imageData) => {
+      // imageData is a base64 encoded string
       this.base64Image = "data:image/jpeg;base64," + imageData;
       this.upImage = imageData;
 
     }, (err) => {
       console.log(err);
-  });
-}
+    });
+  }
 
   checkData() {
     if (this.sname) {
@@ -157,86 +161,85 @@ export class DataEntryPage {
     })
   }
   enterData() {
-    
+
     this.load.present();
 
-    firebase.storage().ref("Students/" + this.sname).putString(this.upImage, 'base64').catch((e)=>{
-    }).then(()=>{
-      firebase.storage().ref("Students/" + this.sname).getDownloadURL().then((dURL)=>{
+    firebase.storage().ref("Students/" + this.sname).putString(this.upImage, 'base64').catch((e) => {
+    }).then(() => {
+      firebase.storage().ref("Students/" + this.sname).getDownloadURL().then((dURL) => {
         this.url = dURL;
-      }).then(()=>{
+      }).then(() => {
 
 
 
 
-    firebase.database().ref("Organisms/Students").push({
-      StudentName: this.sname,
-      ParentName: this.pname,
-      Mobile: this.mobile,
-      DOB: this.dob,
-      Class: this.class,
-      Height: this.height,
-      Weight: this.weight,
-      HBL: this.hbl,
-      Aadhar: this.aadhar,
-      Address: this.address,
-      Community: this.cmmu,
-      Age: this.age,
-      Severity: this.sev,
-      EntryDate: moment().format(),
-      FollowUpDate: moment().add(this.followUpDays, 'day').format(),
-      Mandal: this.skl.Mandal,
-      Village: this.skl.Village,
-      Schools: this.skl.School,
-      ANM: firebase.auth().currentUser.uid,
-      Image : this.url,
-    }).then((res) => {
-      firebase.database().ref("SubsIndex/Schools").child(this.skl.School).child("Students").child(res.key).set(true).then(() => {
-        firebase.database().ref("Counters/Schools").child(this.skl.School).child("Severity").child(this.sev).child(res.key).set(true).then(() => {
-          firebase.database().ref("Counters/Mandals").child(this.skl.Mandal).child("Severity").child(this.sev).child(res.key).set(true).then(() => {
-            firebase.database().ref("Counters/Villages").child(this.skl.Village).child("Severity").child(this.sev).child(res.key).set(true).then(() => {
-              firebase.database().ref("Counters/Schools").child(this.skl.School).child("Community").child(this.cmmu).child(res.key).set(true).then(() => {
-                firebase.database().ref("Counters/Mandals").child(this.skl.Mandal).child("Community").child(this.cmmu).child(res.key).set(true).then(() => {
-                  firebase.database().ref("Counters/Villages").child(this.skl.Village).child("Community").child(this.cmmu).child(res.key).set(true).then(() => {
-                    firebase.database().ref("Counters/District").child("Severity").child(this.sev).child(res.key).set(true).then(() => {
-                      firebase.database().ref("Counters/District").child("Community").child(this.cmmu).child(res.key).set(true).then(() => {
-                        this.sendSMS();
-                        this.load.dismiss();
-                        this.navCtrl.push("DataConfirmPage", { hbl: this.hbl, sev: this.sev, school: this.skl });
+        firebase.database().ref("Organisms/Students").push({
+          StudentName: this.sname,
+          ParentName: this.pname,
+          Mobile: this.mobile,
+          DOB: this.dob,
+          Class: this.class,
+          Height: this.height,
+          Weight: this.weight,
+          HBL: this.hbl,
+          Aadhar: this.aadhar,
+          Address: this.address,
+          Community: this.cmmu,
+          Age: this.age,
+          Severity: this.sev,
+          EntryDate: moment().format(),
+          FollowUpDate: moment().add(this.followUpDays, 'day').format(),
+          Mandal: this.skl.Mandal,
+          Village: this.skl.Village,
+          Schools: this.skl.School,
+          ANM: firebase.auth().currentUser.uid,
+          Image: this.url,
+        }).then((res) => {
+          firebase.database().ref("SubsIndex/Schools").child(this.skl.School).child("Students").child(res.key).set(true).then(() => {
+            firebase.database().ref("Counters/Schools").child(this.skl.School).child("Severity").child(this.sev).child(res.key).set(true).then(() => {
+              firebase.database().ref("Counters/Mandals").child(this.skl.Mandal).child("Severity").child(this.sev).child(res.key).set(true).then(() => {
+                firebase.database().ref("Counters/Villages").child(this.skl.Village).child("Severity").child(this.sev).child(res.key).set(true).then(() => {
+                  firebase.database().ref("Counters/Schools").child(this.skl.School).child("Community").child(this.cmmu).child(res.key).set(true).then(() => {
+                    firebase.database().ref("Counters/Mandals").child(this.skl.Mandal).child("Community").child(this.cmmu).child(res.key).set(true).then(() => {
+                      firebase.database().ref("Counters/Villages").child(this.skl.Village).child("Community").child(this.cmmu).child(res.key).set(true).then(() => {
+                        firebase.database().ref("Counters/District").child("Severity").child(this.sev).child(res.key).set(true).then(() => {
+                          firebase.database().ref("Counters/District").child("Community").child(this.cmmu).child(res.key).set(true).then(() => {
+                            this.sendSMS();
+                            this.load.dismiss();
+                            this.navCtrl.push("DataConfirmPage", { hbl: this.hbl, sev: this.sev, school: this.skl });
+                          })
+                        })
                       })
                     })
                   })
                 })
               })
             })
-          })
-        })
+          });
+        });
+
+
+
       });
     });
-
-
-
-  });
-});
 
   }
 
 
-// 
+  // 
 
 
   sendSMS() {
     let urr1 = "http://api.msg91.com/api/sendhttp.php?country=91&sender=SAMTHA&route=4&mobiles="
     let phone = this.mobile;
-    let urr2 ="&authkey=248515ASS3bXdTM6iH5bf6582b&message=1. రెడ్డిగారు. మీ కూతురు శ్రీలత తెలంగాణ ప్రభుత్వ అనిమీషియా నిర్మూలన వారిచే అనిమియోబి ( రక్తహీనత ) ఉంది అని నిర్ధారించారు.2. అనీమియా ద్వారా వచ్చే రక్త బలహీనతతో మీ బిడ్డ అలసిపోయి, ఎదుగుదల మరియు కాన్సెన్ట్రేషన్ దేనిపైనా కూడా చేయలేదు.3. శ్రీలత బాగుండటానికి మీరు ఆమెకు ఇవ్వవల్సినవి పాలకూర, మేతికూర, బీట్ రూట్, అరటిపండ్లు, మొలకెత్తిన పెసర్లు, కర్జూరము, నట్స్, చేపలు, మాంసము, లివర్ మరియు నువ్వుల, లడ్డు";
+    let urr2 = "&authkey=248515ASS3bXdTM6iH5bf6582b&message=1. రెడ్డిగారు. మీ కూతురు శ్రీలత తెలంగాణ ప్రభుత్వ అనిమీషియా నిర్మూలన వారిచే అనిమియోబి ( రక్తహీనత ) ఉంది అని నిర్ధారించారు.2. అనీమియా ద్వారా వచ్చే రక్త బలహీనతతో మీ బిడ్డ అలసిపోయి, ఎదుగుదల మరియు కాన్సెన్ట్రేషన్ దేనిపైనా కూడా చేయలేదు.3. శ్రీలత బాగుండటానికి మీరు ఆమెకు ఇవ్వవల్సినవి పాలకూర, మేతికూర, బీట్ రూట్, అరటిపండ్లు, మొలకెత్తిన పెసర్లు, కర్జూరము, నట్స్, చేపలు, మాంసము, లివర్ మరియు నువ్వుల, లడ్డు";
     let fU = urr1 + phone + urr2;
     this.http.get(fU, {
       headers: {
         "Access-Control-Allow-Origin": "*",
         "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept"
       },
-    }).subscribe(snip=>{
-      console.log(snip)
+    }).subscribe(snip => {
     })
   }
 
@@ -259,6 +262,60 @@ export class DataEntryPage {
   }
 
 
+  nameL: string = "Student Name";
+  pnameL: string = "Parent Name";
+  mobileL: string = "Mobile";
+  dobL: string = "Date of Birth";
+  classL: string = "Class";
+  heightL: string = "Height in Inches";
+  weightL: string = "Weight in Kgs";
+  hblL: string = "HB Level";
+  aadharL: string = "Aadhar Number";
+  addressL: string = "Residential Address";
+  cmmuL: string = "Community";
+  LangLabel : string = "Language";
+  picBtn  :string="Take Picture";
+  pagetitle : string = "Enter Data";
+  submit :string = "Submit";
+  changeLabels() {
+
+    switch (this.lang) {
+      case "English":
+        this.nameL = "Student Name";
+        this.pnameL = "Parent Name";
+        this.mobileL = "Mobile";
+        this.dobL = "Date of Birth";
+        this.classL = "Class";
+        this.heightL = "Height in Inches";
+        this.weightL = "Weight in Kgs";
+        this.hblL = "HB Level";
+        this.aadharL = "Aadhar Number";
+        this.addressL = "Residential Address";
+        this.cmmuL = "Community";
+        this.LangLabel = "Language";
+        this.picBtn = "Take Picture";
+        this.pagetitle = "Enter Data";
+        this.submit = "Submit";
+        break;
+      case "Telugu":
+        this.nameL = "పేరు";
+        this.pnameL = "తల్లి/తండ్రి పేర్లు";
+        this.mobileL = "మొబైల్ సంఖ్య";
+        this.dobL = "పుట్టిన తేదీ";
+        this.classL = "తరగతి ";
+        this.heightL = "ఎత్తు in Inches";
+        this.weightL = "బరువు in Kgs";
+        this.hblL = "హిమోగ్లోబిన్ స్థాయి";
+        this.aadharL = "ఆధార్ సంఖ్య ";
+        this.addressL = "ఇంటి చిరునామా ";
+        this.cmmuL = "సంఘం";
+        this.LangLabel = "భాషా";
+        this.picBtn = "చిత్రం తీసుకోండి";
+        this.pagetitle = "డేటాను నమోదు";
+        this.submit = "సమర్పించండి";
+        break;
+    }
+  }
 
 
 

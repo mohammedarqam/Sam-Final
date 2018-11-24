@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController, PopoverController } from 'ionic-angular';
 import * as firebase from 'firebase';
 
 
@@ -15,8 +15,9 @@ export class ActiveJobsPage {
   constructor(
   public navCtrl: NavController, 
   public loadingCtrl : LoadingController,
-  public navParams: NavParams
-  ) {
+  public navParams: NavParams,
+  public popoverCtrl: PopoverController,
+) {
     this.getSchools();
   }
 
@@ -46,6 +47,5 @@ export class ActiveJobsPage {
   addData(s){
     this.navCtrl.push("DataEntryPage",{school : s})
   }
-
 
 }

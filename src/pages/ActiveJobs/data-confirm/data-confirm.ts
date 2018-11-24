@@ -42,4 +42,40 @@ export class DataConfirmPage {
     this.navCtrl.push("ReportDetailsPage",{school : this.school.School});
   }
 
+  lang : string = "English";
+  LangLabel : string = "Language";
+  pagetitle : string = "Profile";
+
+  addStuBtn: string = "Add Another Student";
+  SRoprtBtn: string = "View School Report";
+  Done: string = "Done";
+  nFUp : string = "Next Follow Up";
+
+
+  changeLabels() {
+
+    switch (this.lang) {
+      case "English":
+        this.LangLabel = "Language";
+        this.pagetitle = "Student Analysis";
+        this.addStuBtn = "Add Another Student";
+        this.SRoprtBtn = "View School Report";
+        this.Done = "Done";
+        this.nFUp  = "Next Follow Up";
+      
+
+        break;
+      case "Telugu":
+        this.LangLabel = "భాషా";
+        this.pagetitle = "విద్యార్థి విశ్లేషణ";
+        this.addStuBtn = "మరో విద్యార్థిని జోడించు";
+        this.SRoprtBtn = "స్కూల్ రిపోర్ట్ చూడండి";
+        this.Done = "పూర్తి";
+        this.nFUp  = "తదుపరి ఫాలో అప్";
+
+
+
+        break;
+    }
+  }
 }

@@ -29,11 +29,11 @@ firebase.initializeApp(firebaseCred);
   ],
   imports: [
     BrowserModule,
-    HttpClientModule,
     IonicModule.forRoot(MyApp, {
       scrollAssist: false
     }),
     ChartsModule,
+    HttpClientModule,
     AngularFireModule.initializeApp(firebaseCred),
     AngularFireDatabaseModule,
   ],

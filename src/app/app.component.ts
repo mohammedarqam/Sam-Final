@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import * as firebase from 'firebase';
 import { AngularFireDatabase } from 'angularfire2/database';
 
 @Component({
@@ -22,8 +21,8 @@ export class MyApp {
 
   initializeApp() {
     this.platform.ready().then(() => {
-      if (!this.platform.is('tablet')) {
-        this.rootPage = "DataEntryPage";
+      if (this.platform.is('tablet')) {
+        this.rootPage = "LoginPage";
       }else{
         this.rootPage = "PDetectPage";
       }
