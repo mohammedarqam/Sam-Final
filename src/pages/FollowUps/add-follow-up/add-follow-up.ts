@@ -22,6 +22,8 @@ export class AddFollowUpPage {
   sev: string;
   sevC: string;
   followUpDays: string;
+  dose : boolean =  false;
+
 
   constructor(
     public navCtrl: NavController,
@@ -51,6 +53,7 @@ export class AddFollowUpPage {
       Weight: this.weight,
       Height: this.height,
       Severity: this.sev,
+      DosageRecieved : this.dose,
       FollowUpDate: moment().add(this.followUpDays, 'day').format(),
       TimeStamp: moment().format(),
     }).then(() => {

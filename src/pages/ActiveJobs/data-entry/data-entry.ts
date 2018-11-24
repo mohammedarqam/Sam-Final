@@ -4,6 +4,7 @@ import * as firebase from 'firebase';
 import moment from 'moment';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 
+import { HttpClient } from '@angular/common/http';
 
 @IonicPage()
 @Component({
@@ -46,6 +47,7 @@ export class DataEntryPage {
     public navCtrl: NavController,
     public toastCtrl: ToastController,
     public cam : Camera,
+    private http: HttpClient,
     public loadingCtrl: LoadingController,
     public navParams: NavParams
   ) {
@@ -198,7 +200,9 @@ export class DataEntryPage {
                   firebase.database().ref("Counters/Villages").child(this.skl.Village).child("Community").child(this.cmmu).child(res.key).set(true).then(() => {
                     firebase.database().ref("Counters/District").child("Severity").child(this.sev).child(res.key).set(true).then(() => {
                       firebase.database().ref("Counters/District").child("Community").child(this.cmmu).child(res.key).set(true).then(() => {
-
+                        this.sendSMS();
+                        this.load.dismiss();
+                        this.navCtrl.push("DataConfirmPage", { hbl: this.hbl, sev: this.sev, school: this.skl });
                       })
                     })
                   })
@@ -218,9 +222,23 @@ export class DataEntryPage {
   }
 
 
+// 
 
 
-
+  sendSMS() {
+    let urr1 = "http://api.msg91.com/api/sendhttp.php?country=91&sender=SAMTHA&route=4&mobiles="
+    let phone = this.mobile;
+    let urr2 ="&authkey=248515ASS3bXdTM6iH5bf6582b&message=1. రెడ్డిగారు. మీ కూతురు శ్రీలత తెలంగాణ ప్రభుత్వ అనిమీషియా నిర్మూలన వారిచే అనిమియోబి ( రక్తహీనత ) ఉంది అని నిర్ధారించారు.2. అనీమియా ద్వారా వచ్చే రక్త బలహీనతతో మీ బిడ్డ అలసిపోయి, ఎదుగుదల మరియు కాన్సెన్ట్రేషన్ దేనిపైనా కూడా చేయలేదు.3. శ్రీలత బాగుండటానికి మీరు ఆమెకు ఇవ్వవల్సినవి పాలకూర, మేతికూర, బీట్ రూట్, అరటిపండ్లు, మొలకెత్తిన పెసర్లు, కర్జూరము, నట్స్, చేపలు, మాంసము, లివర్ మరియు నువ్వుల, లడ్డు";
+    let fU = urr1 + phone + urr2;
+    this.http.get(fU, {
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept"
+      },
+    }).subscribe(snip=>{
+      console.log(snip)
+    })
+  }
 
 
 

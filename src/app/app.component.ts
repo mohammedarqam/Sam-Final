@@ -23,7 +23,7 @@ export class MyApp {
   initializeApp() {
     this.platform.ready().then(() => {
       if (!this.platform.is('tablet')) {
-        this.rootPage = "LoginPage";
+        this.rootPage = "DataEntryPage";
       }else{
         this.rootPage = "PDetectPage";
       }

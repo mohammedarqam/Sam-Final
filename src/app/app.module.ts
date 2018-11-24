@@ -9,6 +9,7 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { Camera } from '@ionic-native/camera';
 import { ChartsModule } from 'ng2-charts';
+import { HttpClientModule } from '@angular/common/http';
 
 
 export const firebaseCred = {
@@ -28,6 +29,7 @@ firebase.initializeApp(firebaseCred);
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     IonicModule.forRoot(MyApp, {
       scrollAssist: false
     }),
