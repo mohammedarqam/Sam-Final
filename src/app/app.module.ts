@@ -10,6 +10,8 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { Camera } from '@ionic-native/camera';
 import { ChartsModule } from 'ng2-charts';
 import { HttpClientModule } from '@angular/common/http';
+import { NetworkProvider } from '../providers/network/network';
+import { Network } from '@ionic-native/network';
 
 
 export const firebaseCred = {
@@ -45,7 +47,9 @@ firebase.initializeApp(firebaseCred);
     StatusBar,
     SplashScreen,
     Camera,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    NetworkProvider,
+    Network,
   ]
 })
 export class AppModule {}
