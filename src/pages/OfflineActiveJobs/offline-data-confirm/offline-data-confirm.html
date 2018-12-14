@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>{{pagetitle}}</ion-title>
+  </ion-navbar>
+  <ion-item>
+    <ion-label>{{LangLabel}}</ion-label>
+    <ion-select [(ngModel)]="lang" (ionChange)="changeLabels()">
+      <ion-option value="English">English</ion-option>
+      <ion-option value="Telugu">తెలుగు</ion-option>
+    </ion-select>
+  </ion-item>
+  <ion-toolbar>
+    <ion-title>You are Offline</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content padding>
+
+
+  <ion-slides>
+    <ion-slide>
+      <ion-card [color]="sevC">
+        <ion-card-content>
+          <p class="hbl">{{hbl}}</p>
+
+          <p>{{sev}}</p>
+
+          <ion-item [color]="sevC">
+            <p item-start>{{nFUp}}</p>
+            <h3 item-end>{{FollowUp | date : 'mediumDate'}}</h3>
+          </ion-item>
+
+          <button ion-button (click)="anothrStudent()">{{addStuBtn}} </button>
+          <!-- <button ion-button (click)="schoolReport()">{{SRoprtBtn}}</button> -->
+          <button ion-button (click)="done()">{{Done}} </button>
+        </ion-card-content>
+      </ion-card>
+    </ion-slide>
+  </ion-slides>
+
+
+</ion-content>

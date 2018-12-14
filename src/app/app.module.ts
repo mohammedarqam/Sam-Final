@@ -12,6 +12,7 @@ import { ChartsModule } from 'ng2-charts';
 import { HttpClientModule } from '@angular/common/http';
 import { NetworkProvider } from '../providers/network/network';
 import { Network } from '@ionic-native/network';
+import { NativeStorage } from '@ionic-native/native-storage';
 
 
 export const firebaseCred = {
@@ -46,6 +47,7 @@ firebase.initializeApp(firebaseCred);
   providers: [
     StatusBar,
     SplashScreen,
+    NativeStorage,
     Camera,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     NetworkProvider,

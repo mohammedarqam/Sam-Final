@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-navbar color="primary" >
+    <ion-title>Loading Offline</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+
+
+  <button ion-button (click)="getOffData()">Get Data</button>
+  <button ion-button (click)="getStudents()">Get Students</button>
+  <button ion-button (click)="cleanBS()">Clean BS</button>
+
+  <p *ngFor="let s of bs">
+    {{s.StudentName}}
+  </p>
+  
+  {{keys | json}}<br/>
+  Total Student :   {{keys.length | json}}
+
+</ion-content>

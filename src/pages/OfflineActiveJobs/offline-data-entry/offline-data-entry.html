@@ -1,0 +1,140 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>{{pagetitle}}</ion-title>
+  </ion-navbar>
+  <ion-item>
+    <ion-label>{{LangLabel}}</ion-label>
+    <ion-select [(ngModel)]="lang" (ionChange)="changeLabels()">
+      <ion-option value="English">English</ion-option>
+      <ion-option value="Telugu">తెలుగు</ion-option>
+    </ion-select>
+  </ion-item>
+  <ion-toolbar>
+    <ion-title>You are Offline</ion-title>
+  </ion-toolbar>
+
+</ion-header>
+
+<ion-content class="cardback" padding>
+  <!-- <h1>{{skl.SchoolName}} </h1> -->
+  {{skl | json}}
+
+
+  <ion-grid>
+
+    <ion-row>
+      <ion-item>
+        <ion-input type="text" [placeholder]="nameL" [(ngModel)]="sname"></ion-input>
+      </ion-item>
+    </ion-row>
+
+    <ion-row>
+      <ion-item>
+        <ion-input type="text" [placeholder]="pnameL" [(ngModel)]="pname"></ion-input>
+      </ion-item>
+    </ion-row>
+
+    <ion-row>
+      <ion-item>
+        <ion-input type="number" [placeholder]="mobileL" [(ngModel)]="mobile"></ion-input>
+      </ion-item>
+    </ion-row>
+
+
+    <ion-row>
+      <ion-col col-8>
+        <ion-item>
+          <ion-label>{{dobL}} </ion-label>
+          <ion-datetime displayFormat="DD/MMM/YYYY" (ionChange)="calcAge()" [(ngModel)]="dob"></ion-datetime>
+        </ion-item>
+      </ion-col>
+      <ion-col col-2 text-right>
+        <h1 ion-text color="primary">{{age}}</h1>
+      </ion-col>
+      <ion-col col-2>
+        <p>/yrs</p>
+      </ion-col>
+    </ion-row>
+
+
+    <ion-row>
+      <ion-item>
+        <ion-label>{{classL}} </ion-label>
+        <ion-select [(ngModel)]="class">
+          <ion-option value="7">7th</ion-option>
+          <ion-option value="8">8th</ion-option>
+          <ion-option value="9">9th</ion-option>
+          <ion-option value="10">10th</ion-option>
+          <ion-option value="11">11th</ion-option>
+          <ion-option value="12">12th</ion-option>
+        </ion-select>
+      </ion-item>
+    </ion-row>
+
+    <ion-row>
+      <ion-item>
+        <ion-input type="number" [(ngModel)]="height" [placeholder]="heightL"></ion-input>
+      </ion-item>
+    </ion-row>
+
+    <ion-row>
+      <ion-item>
+        <ion-input type="number" [(ngModel)]="weight" [placeholder]="weightL"></ion-input>
+      </ion-item>
+    </ion-row>
+
+    <ion-row>
+      <ion-col col-10>
+        <ion-item>
+          <ion-input type="number" [(ngModel)]="hbl" (ionChange)="getSev()" [placeholder]="hblL"></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col col-2>
+        g/dl
+      </ion-col>
+    </ion-row>
+    <ion-item ion-text text-center margin-bottom *ngIf="hbl" [color]="sevC">
+      <p ion-text color="whiter">{{sev}}</p>
+    </ion-item>
+    <ion-row>
+      <ion-item>
+        <ion-input type="number" [(ngModel)]="aadhar" [placeholder]="aadharL"></ion-input>
+      </ion-item>
+    </ion-row>
+
+    <ion-row>
+      <ion-item>
+        <ion-textarea [(ngModel)]="address" [placeholder]="addressL"></ion-textarea>
+      </ion-item>
+    </ion-row>
+
+    <ion-row>
+      <ion-item>
+        <ion-label>{{cmmuL}}</ion-label>
+        <ion-select [(ngModel)]="cmmu">
+          <ion-option value="SC">SC</ion-option>
+          <ion-option value="ST">ST</ion-option>
+          <ion-option value="BC">BC</ion-option>
+          <ion-option value="OC">OC</ion-option>
+          <ion-option value="Minority">Minority</ion-option>
+        </ion-select>
+      </ion-item>
+    </ion-row>
+
+    <!-- <button ion-button *ngIf="!base64Image" (click)="takePicture()">{{picBtn}}</button>
+
+
+
+    <div class="imageCCard" *ngIf="base64Image">
+      <img [src]="base64Image" class="imageStudent" />
+    </div> -->
+
+
+    <button ion-button  (click)="enterData()">Submit</button>
+
+
+
+  </ion-grid>
+
+
+</ion-content>

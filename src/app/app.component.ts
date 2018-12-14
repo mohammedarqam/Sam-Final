@@ -5,13 +5,12 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { NetworkProvider } from '../providers/network/network';
 import { Network } from '@ionic-native/network';
-import { LoginPage } from '../pages/Auths/login/login';
 
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage:any ="LoginPage";
+  rootPage:any = "OfflineLoadingPage";
 
   constructor(
   public platform: Platform, 
@@ -30,19 +29,17 @@ export class MyApp {
 
       this.networkProvider.initializeNetworkEvents();
 
-   this.events.subscribe('network:offline', () => {
-       alert('network:offline ==> '+this.network.type);    
-   });
+    //   this.events.subscribe('network:offline', () => {
+    //     this.rootPage = "OfflineActiveJobsPage";
+    //   });
+   
+    //   this.events.subscribe('network:online', () => {
+    //   this.rootPage = "LoginPage";
+    // });
 
-   this.events.subscribe('network:online', () => {
-       alert('network:online ==> '+this.network.type);        
-   });
-
-      // if (this.platform.is('tablet')) {
+      // if (!this.platform.is('tablet')) {
       //   this.rootPage = "LoginPage";
-      // }else{
-      //   this.rootPage = "PDetectPage";
-      // }
+      // }else{this.rootPage = "PDetectPage";}
   
 
       this.statusBar.styleDefault();

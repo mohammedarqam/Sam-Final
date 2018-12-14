@@ -1,0 +1,14 @@
+page-offline-active-jobs {
+
+    .btnClas{
+        background: map-get($colors,primary);
+        color : #ffffff;
+        font-weight: 400;
+        text-align: center;
+        cursor: pointer;
+    }
+    .rowCls{
+        background: #ffffff;
+        margin-bottom: 30px;
+    }
+    }
