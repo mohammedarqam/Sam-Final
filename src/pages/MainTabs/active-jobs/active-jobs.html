@@ -1,6 +1,11 @@
 <ion-header>
   <ion-navbar color="primary">
     <ion-title>Active Jobs</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="synk()">
+        <ion-icon name="md-sync"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
@@ -19,8 +24,8 @@
   </ion-grid>
 
 
-{{schools | json}}
-<button ion-button (click)="getOffData()">Get Off Data</button>
+  <!-- {{schools | json}}
+<button ion-button (click)="getOffData()">Get Off Data</button> -->
 
 
 </ion-content>

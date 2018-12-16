@@ -50,9 +50,9 @@ export class ActiveJobsPage {
           this.nativeStorage.setItem('school' + i, {
             SchoolName: this.schools[i].SchoolName,
             Mandal: this.schools[i].Mandal,
-            School : this.schools[i].School,
-            Village :   this.schools[i].Village,
-            key  : this.schools[i].key,
+            School: this.schools[i].School,
+            Village: this.schools[i].Village,
+            key: this.schools[i].key,
           }).then(() => [
             this.nativeStorage.getItem('school' + i).then(
               data => console.log(data.SchoolName)
@@ -62,6 +62,8 @@ export class ActiveJobsPage {
       })
 
 
+    }).catch((e) => {
+      loading.dismiss();
     }).then(() => {
       loading.dismiss();
     })
@@ -71,6 +73,48 @@ export class ActiveJobsPage {
 
   addData(s) {
     this.navCtrl.push("DataEntryPage", { school: s })
+  }
+
+
+  synk() {
+      let tempArr: Array<any> = [];
+      let totSchls : number;
+      let students : Array<any> = [];
+
+      this.nativeStorage.keys().then((keys) => {
+        keys.forEach(k => {
+          tempArr.push(k);
+
+          //Cleaned Total Schools Variable
+          var i1 = tempArr.indexOf('totSchools');
+          if (i1 > -1) { tempArr.splice(i1, 1); }
+
+          //Cleaned Uid
+          var i2 = tempArr.indexOf('anmId');
+          if (i2 > -1) { tempArr.splice(i2, 1); }
+          //Cleaned Schools
+          for (let i = 0; i < totSchls; i++) {
+            if (tempArr.indexOf('school' + i) > -1) { tempArr.splice(tempArr.indexOf('school' + i), 1); }
+
+          }
+          console.log(tempArr);
+          tempArr.forEach(tempStu => {
+            this.nativeStorage.getItem(tempStu)
+              .then(
+                data => students.push(data),
+
+                error => console.error(error)
+              );
+
+          })
+
+        });
+
+      }).then(() => {
+        // this.checkData();
+      });
+
+
   }
 
 }

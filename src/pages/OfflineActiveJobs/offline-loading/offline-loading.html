@@ -1,22 +1,17 @@
 <ion-header>
-  <ion-navbar color="primary" >
+  <ion-navbar color="primary">
     <ion-title>Loading Offline</ion-title>
   </ion-navbar>
+  <ion-toolbar>
+    <ion-title>You are Offline</ion-title>
+  </ion-toolbar>
+
 </ion-header>
 
 
 <ion-content padding>
 
-
-  <button ion-button (click)="getOffData()">Get Data</button>
-  <button ion-button (click)="getStudents()">Get Students</button>
-  <button ion-button (click)="cleanBS()">Clean BS</button>
-
-  <p *ngFor="let s of bs">
-    {{s.StudentName}}
-  </p>
-  
-  {{keys | json}}<br/>
-  Total Student :   {{keys.length | json}}
+  <h2 *ngIf="!anmI">Not Registered as ANM</h2>
+  <h2 *ngIf="!totSchls">No Schools Found</h2>
 
 </ion-content>

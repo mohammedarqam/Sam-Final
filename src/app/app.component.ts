@@ -10,7 +10,7 @@ import { Network } from '@ionic-native/network';
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage:any = "OfflineLoadingPage";
+  rootPage:any ;
 
   constructor(
   public platform: Platform, 
@@ -29,17 +29,17 @@ export class MyApp {
 
       this.networkProvider.initializeNetworkEvents();
 
-    //   this.events.subscribe('network:offline', () => {
-    //     this.rootPage = "OfflineActiveJobsPage";
-    //   });
+      this.events.subscribe('network:offline', () => {
+        this.rootPage = "OfflineActiveJobsPage";
+      });
    
-    //   this.events.subscribe('network:online', () => {
-    //   this.rootPage = "LoginPage";
-    // });
+      this.events.subscribe('network:online', () => {
+      this.rootPage = "LoginPage";
+    });
 
-      // if (!this.platform.is('tablet')) {
-      //   this.rootPage = "LoginPage";
-      // }else{this.rootPage = "PDetectPage";}
+      if (this.platform.is('tablet')) {
+        this.rootPage = "LoginPage";
+      }else{this.rootPage = "PDetectPage";}
   
 
       this.statusBar.styleDefault();
